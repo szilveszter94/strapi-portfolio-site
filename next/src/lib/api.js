@@ -1,3 +1,4 @@
+import { routing } from "./navigation";
 import {
   layoutSchema,
   homePageSchema,
@@ -93,9 +94,11 @@ export const fetchLayout = async () => {
   }
 }
 
-export const fetchHomePage = async () => {
+export const fetchHomePage = async (locale) => {
+  const validatedLocale = locale ? locale : routing.defaultLocale;
   const query = qs.stringify(
     {
+      locale: validatedLocale,
       populate: {
         metadata: { populate: "*" },
         hero: { populate: "*" },

@@ -1,3 +1,7 @@
+import plugin from "next-intl/plugin"
+
+const withNextIntl = plugin("./src/lib/i18n.js");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -22,4 +26,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

@@ -5,8 +5,9 @@ import BtnPrimary from "./BtnPrimary";
 import { Bars3Icon } from '@heroicons/react/16/solid';
 import Link from 'next/link';
 import { useState, useCallback } from 'react';
+import LocaleSwitcher from './LocaleSwitcher';
 
-export default function Header({ data, siteRepresentation }) {
+export default function Header({ data, siteRepresentation, locale }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleClick = useCallback(() => {
@@ -36,7 +37,7 @@ export default function Header({ data, siteRepresentation }) {
       <nav className="flex flex-wrap gap-4 md:gap-6 items-center justify-between p-4">
         {/* Brand */}
         <Link
-          href="/"
+          href={`/${locale}/`}
           className="block text-primary-700"
         >
           <span className="sr-only">Home</span>
@@ -68,7 +69,7 @@ export default function Header({ data, siteRepresentation }) {
             target={cta.openLinkInNewTab ? "_blank" : undefined}
             rel={cta.sameHostLink ? undefined : "noopener noreferrer"}
             label={cta.label}
-            url={cta.url}
+            url={`/${locale}/${cta.url}/`}
             showIcon={cta.showIcon}
             iconType={cta.iconType}
           />
@@ -94,16 +95,17 @@ export default function Header({ data, siteRepresentation }) {
             <span className="sr-only">Toggle menu</span>
             <Bars3Icon className="size-5" />
           </button>
+          <LocaleSwitcher locale={locale} />
         </div>
         {/* Navigation */}
         <ul id="header-navigation" className={`header-navigation flex flex-col basis-full grow text-base md:flex-row md:basis-auto ${isExpanded ? 'show' : ''}`}>
-          <li><Link href="/projects/" className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">Projects</Link></li>
-          <li><Link href="/blog/" className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">Blog</Link></li>
+          <li><Link href={`/${locale}/projects/`} className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">Projects</Link></li>
+          <li><Link href={`/${locale}/blog/`} className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">Blog</Link></li>
           {additionalNavigationItems.length > 0 &&
             additionalNavigationItems.map((item) => (
               <li key={item.id}>
                 <Link
-                  target={item.openLinkInNewTab ? "_blank" : undefined} rel={item.sameHostLink ? undefined : "noopener noreferrer"} href={item.url} className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">
+                  target={item.openLinkInNewTab ? "_blank" : undefined} rel={item.sameHostLink ? undefined : "noopener noreferrer"} href={`/${locale}/${item.url}/`} className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">
                   {item.label}
                 </Link>
               </li>
