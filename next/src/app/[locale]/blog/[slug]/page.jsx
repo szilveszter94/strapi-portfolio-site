@@ -91,6 +91,7 @@ export async function generateMetadata({ params }, parent) {
 export default async function Page(props) {
   const params = await props.params;
   const slug = params.slug;
+  const locale = params.locale;
 
   const [post, global] = await Promise.allSettled([fetchPostBySlug(slug), fetchLayout()]);
 
@@ -219,7 +220,7 @@ export default async function Page(props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <BackTo label="Back to Blog" url="/blog/" />
+      <BackTo label="Back to Blog" url={`/${locale}/blog/`} />
       <div className="mx-auto max-w-5xl px-4">
         <article>
           <header>

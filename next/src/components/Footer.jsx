@@ -13,7 +13,7 @@ const socialIcons = {
   X: (<svg className="size-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm297.1 84L257.3 234.6 379.4 396H283.8L209 298.1 123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5L313.6 116h47.5zM323.3 367.6L153.4 142.9H125.1L296.9 367.6h26.3z" /></svg>),
 };
 
-export default async function Footer({ data, siteRepresentation }) {
+export default async function Footer({ data, siteRepresentation, locale }) {
   if (!data || !siteRepresentation) {
     // Return fallback UI in case of validation or fetch errors
     return (
@@ -51,7 +51,7 @@ export default async function Footer({ data, siteRepresentation }) {
                     alt="Level AA conformance, W3C WAI Web Content Accessibility Guidelines 2.0"
                   />
                 </Link>
-                <Link href="/privacy-policy/" target="_blank" title="Read our privacy policy">
+                <Link href={`/${locale}/privacy-policy/`} target="_blank" title="Read our privacy policy">
                   <Image
                     className="grayscale hover:grayscale-0 transition"
                     src="/gdpr-badge.svg"
@@ -86,16 +86,16 @@ export default async function Footer({ data, siteRepresentation }) {
               <h3 className="text-white font-medium text-xl tracking-tight text-center md:text-start">Navigation</h3>
               <ul className="mt-4 space-y-4">
                 <li className="text-center md:text-start">
-                  <Link className="block md:inline text-base text-white/75 hover:underline" href="/">Home</Link>
+                  <Link className="block md:inline text-base text-white/75 hover:underline" href={`/${locale}/`}>Home</Link>
                 </li>
                 <li className="text-center md:text-start">
-                  <Link className="block md:inline text-base text-white/75 hover:underline" href="/projects/">Projects</Link>
+                  <Link className="block md:inline text-base text-white/75 hover:underline" href={`/${locale}/projects/`}>Projects</Link>
                 </li>
                 <li className="text-center md:text-start">
-                  <Link className="block md:inline text-base text-white/75 hover:underline" href="/blog/">Blog</Link>
+                  <Link className="block md:inline text-base text-white/75 hover:underline" href={`/${locale}/blog/`}>Blog</Link>
                 </li>
                 <li className="text-center md:text-start">
-                  <Link className="block md:inline text-base text-white/75 hover:underline" href="/contact/">Contact</Link>
+                  <Link className="block md:inline text-base text-white/75 hover:underline" href={`/${locale}/contact/`}>Contact</Link>
                 </li>
               </ul>
             </div>
@@ -162,7 +162,7 @@ export default async function Footer({ data, siteRepresentation }) {
 
           {/* Copyright */}
           <div className="flex flex-col md:flex-row md:justify-between">
-            <Link className="text-white/75 text-base transition hover:underline md:order-2 text-center mb-4 md:mb-0" href="/privacy-policy">Privacy policy</Link>
+            <Link className="text-white/75 text-base transition hover:underline md:order-2 text-center mb-4 md:mb-0" href={`/${locale}/privacy-policy/`}>Privacy policy</Link>
             <p className="text-white/75 text-base md:order-1 text-center">{copyright}</p>
           </div>
 

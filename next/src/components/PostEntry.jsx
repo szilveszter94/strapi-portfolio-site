@@ -2,8 +2,8 @@ import { ArrowRightIcon } from '@heroicons/react/16/solid';
 import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
 
-export default function PostEntry({ title, excerpt, slug, createdAt, localeString }) {
-  const formattedCreatedAtDate = formatDate(createdAt, localeString);
+export default function PostEntry({ title, excerpt, slug, createdAt, locale }) {
+  const formattedCreatedAtDate = formatDate(createdAt, locale);
 
   return (
     <article className="relative p-4 py-6 bg-white hover:bg-neutral-100 transition border border-neutral-200 rounded-2xl">
@@ -14,7 +14,7 @@ export default function PostEntry({ title, excerpt, slug, createdAt, localeStrin
       <h3 className="text-gray-900 font-normal text-xl sm:text-2xl tracking-tight relative">{title}</h3>
       <p className="text-gray-700 mt-2 mb-4 relative">{excerpt}</p>
       <Link
-        href={`/blog/${slug}/`}
+        href={`/${locale}/blog/${slug}/`}
         className="
           group
           flex

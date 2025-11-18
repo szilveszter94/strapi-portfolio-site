@@ -278,24 +278,23 @@ export const notFoundPageSchema = z.object({
 //
 // Form
 //
-export const formSchema = z.object({
-  name: z.string().trim(),
-  email: z.string().trim().nonempty({
-    message: 'Email is required.',
-  }).email({
-    message: 'Invalid email address.',
-  }),
-  message: z.string().trim().nonempty({
-    message: 'Message is required.',
-  }).min(10, {
-    message: 'Message must be at least 10 characters long.',
-  }),
-  consent: z.boolean().refine(
-    (val) => val === true,
-    { message: 'Consent is required.' }
-  ),
-});
 
+export function createFormSchema(t) {
+  return z.object({
+    name: z.string().trim(),
+    email: z.string()
+      .trim()
+      .nonempty({ message: t("email.required") })
+      .email({ message: t("email.invalid") }),
+    message: z.string()
+      .trim()
+      .nonempty({ message: t("message.required") })
+      .min(10, { message: t("message.minlength") }),
+    consent: z.boolean().refine((v) => v === true, {
+      message: t("consent.required")
+    }),
+  });
+}
 //
 // Utilities
 //

@@ -8,7 +8,6 @@ import Testimonials from "@/components/Testimonials";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import LatestPosts from "@/components/LatestPosts";
 import { fetchHomePage, fetchFeaturedProjects, fetchLatestPosts, fetchLayout } from "@/lib/api";
-import { routing } from "@/lib/navigation";
 
 export async function generateMetadata({ params }, parent) {
   let page;
@@ -71,7 +70,6 @@ export default async function Page({ params }) {
   const showServices = dynamicData?.__component === "sections.services";
   const { title, description } = metadata;
 
-  let localeString = "en-US";
   let knowsAbout = null;
   let jsonLd = null;
 
@@ -95,7 +93,6 @@ export default async function Page({ params }) {
     const logoUrl = new URL(logo.url, process.env.NEXT_PUBLIC_STRAPI).href;
     const extractedSkills = knowsAbout.flatMap((category) => category.children.map((skill) => skill.name));
     const { htmlLanguageTag } = miscellaneous;
-    localeString = miscellaneous.localeString;
 
     // Construct JSON-LD
     jsonLd = {
@@ -170,9 +167,9 @@ export default async function Page({ params }) {
         <About data={about} />
         <Skills data={skills} skills={knowsAbout} />
         {showServices ? <Services data={dynamicData} /> : <Experience data={dynamicData} />}
-        <FeaturedProjects data={featuredProjects} projects={projects} />
+        <FeaturedProjects data={featuredProjects} projects={projects} locale={locale} />
         <Testimonials data={testimonials} />
-        <LatestPosts data={latestPosts} posts={posts} localeString={localeString} />
+        <LatestPosts data={latestPosts} posts={posts} locale={locale} />
         <Faq data={faq} />
       </div>
     </>

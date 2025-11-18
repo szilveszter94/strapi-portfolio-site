@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/16/solid';
 
-export default function ProjectEntry({ featuredImageUrl, featuredImageAlternativeText, title, excerpt, slug, priority = false }) {
+export default function ProjectEntry({ featuredImageUrl, featuredImageAlternativeText, title, excerpt, slug, locale, priority = false }) {
   return (
     <article className="bg-white hover:bg-neutral-100 transition rounded-2xl border border-neutral-200 relative h-full">
       <Image
@@ -20,7 +20,7 @@ export default function ProjectEntry({ featuredImageUrl, featuredImageAlternativ
         <h3 className="text-gray-900 font-normal text-xl sm:text-2xl tracking-tight">{title}</h3>
         <p className="text-gray-700 mt-2 mb-4">{excerpt}</p>
         <Link
-          href={`/projects/${slug}/`}
+          href={`/${locale}/projects/${slug}/`}
           className="
             group
             flex

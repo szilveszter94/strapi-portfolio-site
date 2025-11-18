@@ -1,13 +1,14 @@
-'use server';
+"use server";
 
-import { formSchema } from "./schemas";
+import { createFormSchema } from "./schemas";
+import { getTranslations } from "next-intl/server";
 
 const createLead = async (data) => {
   const token = process.env.STRAPI_FORM_TOKEN;
   const endpoint = `/api/leads`;
 
   const options = {
-    method: 'POST',
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -37,22 +38,26 @@ const sanitizeInput = (data) => ({
 });
 
 export async function onSubmitAction(data) {
+  const tZodErrors = await getTranslations("errors.zodValidation");
+  const tFormErrors = await getTranslations("errors.forms");
+
   try {
     // Check honeypot field
     if (data.name) {
-      console.warn("Spam detected via honeypot:", data.name);
-      throw new Error("Spam submission detected");
+      console.warn(tFormErrors("honeypot"), data.name);
+      throw new Error(tFormErrors("spamSubmission"));
     }
 
     // Sanitize input
+    const schema = createFormSchema(tZodErrors);
     const sanitizedData = sanitizeInput(data);
 
     // Validate data using Zod
-    const result = formSchema.safeParse(sanitizedData);
+    const result = schema.safeParse(sanitizedData);
 
     if (!result.success) {
-      console.error(`Validation failed for form data:`, result.error);
-      throw new Error(`Invalid data received from form submission`);
+      console.error(tFormErrors("validation"), result.error);
+      throw new Error(tFormErrors("invalidData"));
     }
 
     const validatedData = result.data;
@@ -64,7 +69,7 @@ export async function onSubmitAction(data) {
 
     // Send email notification
   } catch (error) {
-    console.error("Error processing form data: ", error);
-    throw new Error("Error processing form data");
+    console.error(tFormErrors("processing"), error);
+    throw new Error(tFormErrors("generalProcessing"));
   }
 }

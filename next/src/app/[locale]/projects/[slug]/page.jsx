@@ -77,6 +77,7 @@ export async function generateMetadata({ params }, parent) {
 export default async function Page(props) {
   const params = await props.params;
   const slug = params.slug;
+  const locale = params.locale;
 
   const [project, global] = await Promise.allSettled([fetchProjectBySlug(slug), fetchLayout()]);
 
@@ -187,7 +188,7 @@ export default async function Page(props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <BackTo label="Back to Projects" url="/projects/" />
+      <BackTo label="Back to Projects" url={`/${locale}/projects/`} />
       <div className="mx-auto max-w-6xl px-4">
         <article>
           <header>

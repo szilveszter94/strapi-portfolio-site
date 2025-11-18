@@ -3,7 +3,7 @@ import ProjectCarousel from "./ProjectCarousel";
 import BtnSecondary from "./BtnSecondary";
 import ShapeDivider from "./ShapeDivider";
 
-export default function FeaturedProjects({ data, projects }) {
+export default function FeaturedProjects({ data, projects, locale }) {
   // Destructure the necessary properties
   const { headline, supportiveText } = data;
 
@@ -16,7 +16,7 @@ export default function FeaturedProjects({ data, projects }) {
           <div className="text-red-600 text-center">Error: We encountered an issue while loading the featured projects.</div>
         ) : (
           projects.value.length > 0 ? (
-            <ProjectCarousel projects={projects.value} baseUrl={process.env.NEXT_PUBLIC_STRAPI} />
+            <ProjectCarousel projects={projects.value} baseUrl={process.env.NEXT_PUBLIC_STRAPI} locale={locale} />
           ) : (
             <p className="text-center text-gray-500">
               No featured projects available at the moment. Please check back later!

@@ -1,6 +1,6 @@
 import PostEntry from "./PostEntry";
 
-export default async function PostList({ postList, localeString }) {
+export default async function PostList({ postList, locale }) {
   return (
     <div className="space-y-6">
       {postList.map((entry) => (
@@ -10,7 +10,7 @@ export default async function PostList({ postList, localeString }) {
           excerpt={entry.excerpt}
           slug={entry.slug}
           createdAt={entry.createdAt}
-          localeString={localeString}
+          locale={locale}
         />
       ))}
     </div>

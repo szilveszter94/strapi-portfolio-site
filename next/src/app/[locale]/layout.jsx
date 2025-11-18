@@ -109,7 +109,7 @@ export default async function RootLayout({ children, params }) {
           <Header data={header} siteRepresentation={siteRepresentation} locale={locale} />
           <main className="relative">{children}</main>
           <CallToAction data={cta} />
-          <Footer data={footer} siteRepresentation={siteRepresentation} />
+          <Footer data={footer} siteRepresentation={siteRepresentation} locale={locale} />
         </ServerProviders>
       </body>
     </html>
