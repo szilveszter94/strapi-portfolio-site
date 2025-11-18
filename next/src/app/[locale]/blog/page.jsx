@@ -1,12 +1,14 @@
 import Banner from "@/components/Banner";
 import PostList from "@/components/PostList";
 import { fetchBlogPage, fetchAllPosts, fetchLayout } from "@/lib/api";
+import { getTranslations } from "next-intl/server";
 
-export async function generateMetadata(_, parent) {
+export async function generateMetadata({ params }, parent) {
+  const { locale } = await params;
   let page;
 
   try {
-    page = await fetchBlogPage();
+    page = await fetchBlogPage(locale);
   } catch (error) {
     console.error(error.message);
     // Return fallback metadata in case of validation or fetch errors
@@ -39,7 +41,12 @@ export async function generateMetadata(_, parent) {
 
 export default async function Page({ params }) {
   const { locale } = await params;
-  const [page, posts, global] = await Promise.allSettled([fetchBlogPage(), fetchAllPosts(), fetchLayout()]);
+  const tButton = await getTranslations({ locale, namespace: "buttons" });
+  const [page, posts, global] = await Promise.allSettled([
+    fetchBlogPage(locale),
+    fetchAllPosts(locale),
+    fetchLayout(locale),
+  ]);
 
   if (page.status === "rejected") {
     return (
@@ -148,7 +155,7 @@ export default async function Page({ params }) {
         {posts.status === "rejected" ? (
           <div className="text-red-600 text-center">Error: We encountered an issue while loading the blog posts.</div>
         ) : posts.value.length > 0 ? (
-          <PostList postList={posts.value} locale={locale} />
+          <PostList postList={posts.value} locale={locale} tButton={tButton} />
         ) : (
           <p className="text-center text-gray-500">No posts available at the moment. Please check back later!</p>
         )}

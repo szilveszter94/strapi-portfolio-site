@@ -63,9 +63,10 @@ async function validateResponse(response, schema, endpoint) {
 // Layout & Pages
 //
 
-export const fetchLayout = async () => {
+export const fetchLayout = async (locale) => {
   const query = qs.stringify(
     {
+      locale: locale,
       populate: {
         siteRepresentation: { populate: "*" },
         icons: { populate: "*" },
@@ -142,9 +143,10 @@ export const fetchHomePage = async (locale) => {
   };
 };
 
-export const fetchProjectsPage = async () => {
+export const fetchProjectsPage = async (locale) => {
   const query = qs.stringify(
     {
+      locale: locale,
       populate: {
         metadata: { populate: "*" },
         banner: true,
@@ -163,9 +165,10 @@ export const fetchProjectsPage = async () => {
   };
 };
 
-export const fetchBlogPage = async () => {
+export const fetchBlogPage = async (locale) => {
   const query = qs.stringify(
     {
+      locale: locale,
       populate: {
         metadata: { populate: "*" },
         banner: true,
@@ -209,9 +212,10 @@ export const fetchContactPage = async (locale) => {
   };
 };
 
-export const fetchPrivacyPage = async () => {
+export const fetchPrivacyPage = async (locale) => {
   const query = qs.stringify(
     {
+      locale: locale,
       populate: {
         metadata: { populate: "*" },
         banner: true,
@@ -232,9 +236,10 @@ export const fetchPrivacyPage = async () => {
   };
 };
 
-export const fetchNotFoundPage = async () => {
+export const fetchNotFoundPage = async (locale) => {
   const query = qs.stringify(
     {
+      locale: locale,
       populate: {
         metadata: { populate: "*" },
         banner: true,
@@ -257,10 +262,11 @@ export const fetchNotFoundPage = async () => {
 // Post-related
 //
 
-export const fetchAllPosts = async () => {
+export const fetchAllPosts = async (locale) => {
   // Fetch posts sorted by the createdAt field in descending order (most recent first)
   const query = qs.stringify(
     {
+      locale: locale,
       populate: "*",
       sort: ["createdAt:desc"],
       pagination: {
@@ -278,10 +284,11 @@ export const fetchAllPosts = async () => {
   return validatedData.data;
 };
 
-export const fetchLatestPosts = async () => {
+export const fetchLatestPosts = async (locale) => {
   // Fetch posts sorted by the createdAt field in descending order (most recent first)
   const query = qs.stringify(
     {
+      locale: locale,
       populate: "*",
       sort: ["createdAt:desc"],
       pagination: {
@@ -299,9 +306,10 @@ export const fetchLatestPosts = async () => {
   return validatedData.data;
 };
 
-export const fetchPostBySlug = async (slug) => {
+export const fetchPostBySlug = async (slug, locale) => {
   const query = qs.stringify(
     {
+      locale: locale,
       populate: "*",
       filters: {
         slug: {
@@ -358,10 +366,11 @@ export const fetchPostSitemap = async () => {
 // Project-related
 //
 
-export const fetchAllProjects = async () => {
+export const fetchAllProjects = async (locale) => {
   // Fetch projects sorted by the order field in ascending order
   const query = qs.stringify(
     {
+      locale: locale,
       populate: "*",
       sort: ["order:asc"],
       pagination: {
@@ -379,10 +388,11 @@ export const fetchAllProjects = async () => {
   return validatedData.data;
 };
 
-export const fetchFeaturedProjects = async () => {
+export const fetchFeaturedProjects = async (locale) => {
   // Fetch featured projects sorted by the order field in ascending order
   const query = qs.stringify(
     {
+      locale: locale,
       populate: "*",
       filters: {
         isFeatured: {
@@ -401,9 +411,10 @@ export const fetchFeaturedProjects = async () => {
   return validatedData.data;
 };
 
-export const fetchProjectBySlug = async (slug) => {
+export const fetchProjectBySlug = async (slug, locale) => {
   const query = qs.stringify(
     {
+      locale: locale,
       populate: "*",
       filters: {
         slug: {
@@ -478,9 +489,10 @@ export const fetchAllSlugs = async (resource) => {
   }));
 };
 
-export const fetchDynamicPageMetadata = async (resource, slug) => {
+export const fetchDynamicPageMetadata = async (resource, slug, locale) => {
   const query = qs.stringify(
     {
+      locale: locale,
       fields: ["title", "excerpt"],
       populate: {
         featuredImage: true,

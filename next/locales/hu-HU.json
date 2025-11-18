@@ -1,19 +1,34 @@
 {
+  "layout": {
+    "statement": "Nyilatkozat",
+    "home": "Kezdőlap",
+    "projects": "Projektek",
+    "blog": "Blog",
+    "contact": "Kapcsolat",
+    "locationAndContact": "Helyszín és elérhetőség",
+    "locationInformation": "Helyinformációk",
+    "locationPrefix": "Lakhely ",
+    "serving": "Szolgáltat ",
+    "contactMethods": "Kapcsolatfelvételi módok",
+    "sheduleCall": "Telefonos egyeztetés",
+    "backToTop": "Vissza az elejére",
+    "followMe": "Kövess be",
+    "privacyPolicy": "Adatvédelmi irányelvek"
+  },
+  "buttons": {
+    "hideDescription": "Leírás elrejtése",
+    "showDescription": "Leírás lenyitása",
+    "showFewerServices": "Kevesebb szolgáltatás megjelenítése",
+    "showAllServices": "Minden szolgáltatás megjelenítése",
+    "viewAllProjects": "Összes projekt megtekintése",
+    "viewAllPosts": "Összes bejegyzés megtekintése",
+    "readMore": "További információk"
+  },
   "errors": {
-    "global": {
-      "title": "An unknown error occurred",
-      "tryAgain": "Try again",
-      "invalidContent": "This content could not be displayed",
-      "somethingWentWrong": "Something went wrong 🥺"
+    "general": {
+      "noProjectsAvailable": "Jelenleg nincs kiemelt projekt. Kérjük, próbálkozzon később újra!",
+      "projectsNotLoading": "Hiba: Probléma történt a kiemelt projektek betöltése közben."
     },
-
-    "notFound": {
-      "title": "Page not found",
-      "description": "The page you are looking for was not found.",
-      "solution": "Please check if you have entered the correct URL or return to the home page.",
-      "redirect": "Go to home page"
-    },
-
     "forms": {
       "honeypot": "Spam észlelve honeypot segítségével: ",
       "spamSubmission": "Spam beküldés észlelve",

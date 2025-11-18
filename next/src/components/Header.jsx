@@ -6,9 +6,11 @@ import { Bars3Icon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import { useState, useCallback } from "react";
 import LocaleSwitcher from "./LocaleSwitcher";
+import { useTranslations } from "next-intl";
 
 export default function Header({ data, siteRepresentation, locale }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const tLayout = useTranslations("layout");
 
   const handleClick = useCallback(() => {
     setIsExpanded(!isExpanded);
@@ -38,7 +40,7 @@ export default function Header({ data, siteRepresentation, locale }) {
       <nav className="flex flex-wrap gap-4 md:gap-6 items-center justify-between p-4">
         {/* Brand */}
         <Link href={`/${locale}/`} className="block text-primary-700">
-          <span className="sr-only">Home</span>
+          <span className="sr-only">{tLayout("home")}</span>
           <Image
             draggable="false"
             priority
@@ -104,14 +106,14 @@ export default function Header({ data, siteRepresentation, locale }) {
             <Link
               href={`/${locale}/projects/`}
               className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">
-              Projects
+              {tLayout("projects")}
             </Link>
           </li>
           <li>
             <Link
               href={`/${locale}/blog/`}
               className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">
-              Blog
+              {tLayout("blog")}
             </Link>
           </li>
           {additionalNavigationItems.length > 0 &&

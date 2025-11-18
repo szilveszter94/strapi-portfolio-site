@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/lib/navigation";
 import { ServerProviders } from "@/components/providers/ServerProvider";
+import { getTranslations } from "next-intl/server";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -32,11 +33,12 @@ export async function generateViewport() {
   };
 }
 
-export async function generateMetadata() {
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
   let data;
 
   try {
-    data = await fetchLayout();
+    data = await fetchLayout(locale);
   } catch (error) {
     console.error(error.message);
     // Return fallback metadata in case of validation or fetch errors
@@ -80,6 +82,7 @@ export async function generateMetadata() {
 export default async function RootLayout({ children, params }) {
   let data = null;
   const { locale } = await params;
+  const tLayout = await getTranslations({ locale, namespace: "layout" });
   setRequestLocale(locale);
 
   if (!routing.locales.includes(locale)) {
@@ -87,7 +90,7 @@ export default async function RootLayout({ children, params }) {
   }
 
   try {
-    data = await fetchLayout();
+    data = await fetchLayout(locale);
   } catch (error) {
     console.error(error.message);
     data = {
@@ -106,10 +109,10 @@ export default async function RootLayout({ children, params }) {
       <body className="antialiased text-gray-500 text-base">
         <ServerProviders locale={locale}>
           <Announcement data={announcement} />
-          <Header data={header} siteRepresentation={siteRepresentation} locale={locale} />
+          <Header data={header} siteRepresentation={siteRepresentation} locale={locale}/>
           <main className="relative">{children}</main>
           <CallToAction data={cta} />
-          <Footer data={footer} siteRepresentation={siteRepresentation} locale={locale} />
+          <Footer data={footer} siteRepresentation={siteRepresentation} locale={locale} tLayout={tLayout} />
         </ServerProviders>
       </body>
     </html>

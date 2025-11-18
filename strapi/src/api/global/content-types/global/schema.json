@@ -10,48 +10,87 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "header": {
       "type": "component",
-      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "sections.header",
+      "repeatable": false,
       "required": true
     },
     "announcement": {
       "type": "component",
-      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "blocks.announcement",
+      "repeatable": false,
       "required": true
     },
     "footer": {
       "type": "component",
-      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "sections.footer",
+      "repeatable": false,
       "required": true
     },
     "cta": {
       "type": "component",
-      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "sections.call-to-action",
+      "repeatable": false,
       "required": true
     },
     "miscellaneous": {
       "type": "component",
-      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "blocks.miscellaneous",
+      "repeatable": false,
       "required": true
     },
     "siteRepresentation": {
       "type": "component",
-      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "blocks.site-representation",
+      "repeatable": false,
       "required": true
     },
     "icons": {
       "type": "component",
-      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "blocks.favicon-and-app-icons",
+      "repeatable": false,
       "required": true
     }
   }

@@ -48,9 +48,9 @@ export default async function Page({ params }) {
   const { locale } = await params;
   const [page, projects, posts, global] = await Promise.allSettled([
     fetchHomePage(locale),
-    fetchFeaturedProjects(),
-    fetchLatestPosts(),
-    fetchLayout(),
+    fetchFeaturedProjects(locale),
+    fetchLatestPosts(locale),
+    fetchLayout(locale),
   ]);
 
   if (page.status === "rejected") {

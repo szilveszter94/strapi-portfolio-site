@@ -10,18 +10,32 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "metadata": {
       "type": "component",
-      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "seo.metadata",
+      "repeatable": false,
       "required": true
     },
     "banner": {
       "type": "component",
-      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "sections.banner",
+      "repeatable": false,
       "required": true
     }
   }

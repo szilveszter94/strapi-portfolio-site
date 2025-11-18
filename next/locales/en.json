@@ -1,17 +1,35 @@
 {
+  "layout": {
+    "statement": "Statement",
+    "home": "Home",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact",
+    "locationAndContact": "Location & contact",
+    "locationInformation": "Location information",
+    "locationPrefix": "Based in ",
+    "serving": "Serving ",
+    "contactMethods": "Contact methods",
+    "sheduleCall": "Shedule a call",
+    "backToTop": "Back to top",
+    "followMe": "Follow us",
+    "privacyPolicy": "Privacy policy"
+  },
+  "buttons": {
+    "hideDescription": "Hide description",
+    "showDescription": "Show description",
+    "showFewerServices": "Show fewer services",
+    "showAllServices": "Show all services",
+    "viewAllProjects": "View all projects",
+    "viewAllPosts": "View all posts",
+    "readMore": "Read more"
+  },
   "errors": {
-    "global": {
-      "title": "An unknown error occurred",
-      "tryAgain": "Try again",
-      "invalidContent": "This content could not be displayed",
-      "somethingWentWrong": "Something went wrong 🥺"
-    },
-
-    "notFound": {
-      "title": "Page not found",
-      "description": "The page you are looking for was not found.",
-      "solution": "Please check if you have entered the correct URL or return to the home page.",
-      "redirect": "Go to home page"
+    "general": {
+      "noProjectsAvailable": "No featured projects available at the moment. Please check back later!",
+      "projectsNotLoading": "Error: We encountered an issue while loading the featured projects.",
+      "noPostsAvailable": "No posts available at the moment. Please check back later!",
+      "postsNotLoading": "Error: We encountered an issue while loading the latest posts."
     },
     "forms": {
       "honeypot": "Spam detected via honeypot: ",

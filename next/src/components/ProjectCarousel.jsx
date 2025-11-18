@@ -3,7 +3,7 @@
 import ProjectEntry from "./ProjectEntry";
 import useEmblaCarousel from 'embla-carousel-react';
 
-export default function ProjectCarousel({ projects, baseUrl, locale }) {
+export default function ProjectCarousel({ projects, baseUrl, locale, buttonText }) {
   const [emblaRef] = useEmblaCarousel({ loop: false, align: 'start', slidesToScroll: 1 });
 
   return (
@@ -21,6 +21,7 @@ export default function ProjectCarousel({ projects, baseUrl, locale }) {
                 slug={entry.slug}
                 priority={false}
                 locale={locale}
+                buttonText={buttonText}
               />
             </div>
           );

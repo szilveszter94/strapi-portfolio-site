@@ -38,8 +38,9 @@ export async function generateMetadata(_, parent) {
   }
 }
 
-export default async function Page() {
-  const [page, global] = await Promise.allSettled([fetchPrivacyPage(), fetchLayout()]);
+export default async function Page({params}) {
+  const locale = await params;
+  const [page, global] = await Promise.allSettled([fetchPrivacyPage(locale), fetchLayout(locale)]);
 
   if (page.status === 'rejected') {
     return (

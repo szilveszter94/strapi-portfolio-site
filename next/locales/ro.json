@@ -1,19 +1,34 @@
 {
+  "layout": {
+    "statement": "Declarație",
+    "home": "Acasă",
+    "projects": "Proiecte",
+    "blog": "Blog",
+    "contact": "Contact",
+    "locationAndContact": "Locație și contact",
+    "locationInformation": "Informații despre locație",
+    "locationPrefix": "Locul de reședință ",
+    "contactMethods": "Metode de contact",
+    "sheduleCall": "Programează un apel",
+    "backToTop": "Înapoi sus",
+    "serving": "Servire ",
+    "followMe": "Urmăriți-ne",
+    "privacyPolicy": "Politica de confidențialitate"
+  },
+  "buttons": {
+    "hideDescription": "Ascunde descrierea",
+    "showDescription": "Afișează descrierea",
+    "showFewerServices": "Afișați mai puține servicii",
+    "showAllServices": "Afișați toate serviciile",
+    "viewAllProjects": "Vizualizați toate proiectele",
+    "viewAllPosts": "Vezi toate postările",
+    "readMore": "Citește mai mult"
+  },
   "errors": {
-    "global": {
-      "title": "An unknown error occurred",
-      "tryAgain": "Try again",
-      "invalidContent": "This content could not be displayed",
-      "somethingWentWrong": "Something went wrong 🥺"
+    "general": {
+      "noProjectsAvailable": "În acest moment nu sunt disponibile proiecte recomandate. Vă rugăm să reveniți mai târziu!",
+      "projectsNotLoading": "Eroare: Am întâmpinat o problemă la încărcarea proiectelor prezentate."
     },
-
-    "notFound": {
-      "title": "Page not found",
-      "description": "The page you are looking for was not found.",
-      "solution": "Please check if you have entered the correct URL or return to the home page.",
-      "redirect": "Go to home page"
-    },
-
     "forms": {
       "honeypot": "Spam detectat prin câmpul honeypot: ",
       "spamSubmission": "A fost detectată o trimitere de tip spam",

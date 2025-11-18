@@ -43,7 +43,7 @@ export async function generateMetadata({ params }, parent) {
 
 export default async function Page({ params }) {
   const { locale } = await params;
-  const [page, global] = await Promise.allSettled([fetchContactPage(locale), fetchLayout()]);
+  const [page, global] = await Promise.allSettled([fetchContactPage(locale), fetchLayout(locale)]);
 
   if (page.status === "rejected") {
     return (

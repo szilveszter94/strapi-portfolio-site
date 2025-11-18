@@ -1,8 +1,18 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRightIcon } from '@heroicons/react/16/solid';
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRightIcon } from "@heroicons/react/16/solid";
 
-export default function ProjectEntry({ featuredImageUrl, featuredImageAlternativeText, title, excerpt, slug, locale, priority = false }) {
+export default function ProjectEntry({
+  featuredImageUrl,
+  featuredImageAlternativeText,
+  title,
+  excerpt,
+  slug,
+  locale,
+  buttonText,
+  priority = false,
+}) {
+
   return (
     <article className="bg-white hover:bg-neutral-100 transition rounded-2xl border border-neutral-200 relative h-full">
       <Image
@@ -11,7 +21,7 @@ export default function ProjectEntry({ featuredImageUrl, featuredImageAlternativ
         priority={priority}
         {...(priority ? { priority: true } : { loading: "lazy" })}
         src={featuredImageUrl}
-        alt={featuredImageAlternativeText ?? ''}
+        alt={featuredImageAlternativeText ?? ""}
         width={1468}
         height={769}
         sizes="(max-width: 639px) calc(100vw - 34px), (max-width: 1024px) calc(50vw - 30px), 482px"
@@ -27,10 +37,9 @@ export default function ProjectEntry({ featuredImageUrl, featuredImageAlternativ
             font-medium
             leading-none
             text-primary-700
-          "
-        >
+          ">
           <span className="absolute inset-y-0 inset-x-0 rounded-2xl"></span>
-          Read more
+          {buttonText}
           <span className="sr-only">, about {title}</span>
           <ArrowRightIcon className="h-[1em] w-[1em] ms-1 group-hover:translate-x-0.5 transition" />
         </Link>

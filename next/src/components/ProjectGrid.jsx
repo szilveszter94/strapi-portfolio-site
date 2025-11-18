@@ -1,6 +1,6 @@
 import ProjectEntry from "./ProjectEntry";
 
-export default function ProjectGrid({ projects, locale }) {
+export default function ProjectGrid({ projects, locale, buttonText }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {projects.map((entry, index) => {
@@ -15,6 +15,7 @@ export default function ProjectGrid({ projects, locale }) {
             slug={entry.slug}
             priority={index < 4} // Prioritize the first 4 project images
             locale={locale}
+            buttonText={buttonText}
           />
         );
       })}
