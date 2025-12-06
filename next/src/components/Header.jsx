@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import BtnPrimary from "./BtnPrimary";
 import { Bars3Icon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import { useState, useCallback } from "react";
 import LocaleSwitcher from "./LocaleSwitcher";
 import { useTranslations } from "next-intl";
 
-export default function Header({ data, siteRepresentation, locale }) {
+export default function Header({ siteRepresentation, locale }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const tLayout = useTranslations("layout");
 
@@ -16,7 +15,7 @@ export default function Header({ data, siteRepresentation, locale }) {
     setIsExpanded(!isExpanded);
   }, [isExpanded]);
 
-  if (!data || !siteRepresentation) {
+  if (!siteRepresentation) {
     // Return fallback UI in case of validation or fetch errors
     return (
       <div className="backdrop-blur-xl sticky top-0 z-[1000] border-b border-black/15">
@@ -30,7 +29,6 @@ export default function Header({ data, siteRepresentation, locale }) {
   }
 
   // Destructure/Format the necessary properties
-  const { additionalNavigationItems, cta } = data;
   const { logo, logomark } = siteRepresentation;
   const logoUrl = new URL(logo.url, process.env.NEXT_PUBLIC_STRAPI).href;
   const logomarkUrl = new URL(logomark.url, process.env.NEXT_PUBLIC_STRAPI).href;
@@ -64,15 +62,6 @@ export default function Header({ data, siteRepresentation, locale }) {
         </Link>
         {/* CTA & Toggler  */}
         <div className="flex items-center gap-4 md:order-2">
-          <BtnPrimary
-            className="!h-9"
-            target={cta.openLinkInNewTab ? "_blank" : undefined}
-            rel={cta.sameHostLink ? undefined : "noopener noreferrer"}
-            label={cta.label}
-            url={`/${locale}/${cta.url}/`}
-            showIcon={cta.showIcon}
-            iconType={cta.iconType}
-          />
           <button
             className="
                 block
@@ -104,6 +93,13 @@ export default function Header({ data, siteRepresentation, locale }) {
           }`}>
           <li>
             <Link
+              href={`/${locale}/`}
+              className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">
+              {tLayout("home")}
+            </Link>
+          </li>
+          <li>
+            <Link
               href={`/${locale}/projects/`}
               className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">
               {tLayout("projects")}
@@ -113,21 +109,23 @@ export default function Header({ data, siteRepresentation, locale }) {
             <Link
               href={`/${locale}/blog/`}
               className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">
-              {tLayout("blog")}
+              {tLayout("news")}
             </Link>
           </li>
-          {additionalNavigationItems.length > 0 &&
-            additionalNavigationItems.map((item) => (
-              <li key={item.id}>
-                <Link
-                  target={item.openLinkInNewTab ? "_blank" : undefined}
-                  rel={item.sameHostLink ? undefined : "noopener noreferrer"}
-                  href={`/${locale}/${item.url}/`}
-                  className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+          <li>
+            <Link
+              href={`/${locale}/about/`}
+              className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">
+              {tLayout("about")}
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={`/${locale}/contact/`}
+              className="block py-[10px] leading-none md:px-2 text-gray-900 transition hover:text-gray-900/75">
+              {tLayout("contact")}
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>

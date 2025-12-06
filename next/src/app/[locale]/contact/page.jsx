@@ -4,6 +4,7 @@ import Form from "@/components/Form";
 import NoSSRWrapper from "@/components/NoSSRWrapper";
 import Link from "next/link";
 import ContactLink from "@/components/ContactLink";
+import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({ params }, parent) {
   const { locale } = await params;
@@ -44,6 +45,7 @@ export async function generateMetadata({ params }, parent) {
 export default async function Page({ params }) {
   const { locale } = await params;
   const [page, global] = await Promise.allSettled([fetchContactPage(locale), fetchLayout(locale)]);
+  const tContact = await getTranslations({ locale, namespace: "contactForm" });
 
   if (page.status === "rejected") {
     return (
@@ -164,7 +166,9 @@ export default async function Page({ params }) {
               {process.env.NEXT_PUBLIC_EMAIL_ENCODED && (
                 <NoSSRWrapper>
                   <div className="border border-neutral-200 rounded-xl text-center py-8 sm:py-12">
-                    <h3 className="text-gray-900 font-medium text-xl md:text-2xl tracking-tight mb-2">Email</h3>
+                    <h3 className="text-gray-900 font-medium text-xl md:text-2xl tracking-tight mb-2">
+                      {tContact("email")}
+                    </h3>
                     <ContactLink
                       type="email"
                       className="text-gray-700 font-light text-xl md:text-2xl tracking-tight border-b border-primary-700 hover:border-b-2"
@@ -176,7 +180,9 @@ export default async function Page({ params }) {
               {process.env.NEXT_PUBLIC_TELEPHONE_ENCODED && (
                 <NoSSRWrapper>
                   <div className="border border-neutral-200 rounded-xl text-center py-8 sm:py-12">
-                    <h3 className="text-gray-900 font-medium text-xl md:text-2xl tracking-tight mb-2">Telephone</h3>
+                    <h3 className="text-gray-900 font-medium text-xl md:text-2xl tracking-tight mb-2">
+                      {tContact("phone")}
+                    </h3>
                     <ContactLink
                       type="telephone"
                       className="text-gray-700 font-light text-xl md:text-2xl tracking-tight border-b border-primary-700 hover:border-b-2"
@@ -195,11 +201,24 @@ export default async function Page({ params }) {
                 />
               )}
               <div className="text-center py-8 sm:py-12">
-                <h3 className="text-gray-900 font-medium text-xl md:text-2xl tracking-tight mb-2">Location</h3>
+                <h3 className="text-gray-900 font-medium text-xl md:text-2xl tracking-tight mb-2">
+                  {tContact("location")}
+                </h3>
                 <p className="text-gray-700 font-light text-xl md:text-2xl tracking-tight">
-                  Based in {addressLocality}
+                  {tContact("locationPrefix")}
+                  {addressLocality}
                   {isOrganization && areaServed && ` - Serving ${areaServed}`}
                 </p>
+              </div>
+              <div className="w-full h-64 rounded-xl overflow-hidden border border-neutral-200">
+                <iframe
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(addressLocality)}&hl=${locale}&z=14&output=embed`}
+                  width="100%"
+                  height="100%"
+                  loading="lazy"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                />
               </div>
               {isOrganization && businessHours && (
                 <div className="text-center py-8 sm:py-12">

@@ -11,6 +11,7 @@ import {
   projectCollectionSchema,
   allSlugsSchema,
   dynamicPageMetadataSchema,
+  aboutPageSchema,
 } from "./schemas";
 
 const qs = require("qs");
@@ -71,8 +72,6 @@ export const fetchLayout = async (locale) => {
         siteRepresentation: { populate: "*" },
         icons: { populate: "*" },
         announcement: true,
-        header: { populate: "*" },
-        cta: { populate: "*" },
         footer: { populate: "*" },
         miscellaneous: { populate: "*" },
       },
@@ -86,8 +85,6 @@ export const fetchLayout = async (locale) => {
   const validatedData = await validateResponse(response, layoutSchema, endpoint);
   return {
     announcement: validatedData.data.announcement,
-    header: validatedData.data.header,
-    cta: validatedData.data.cta,
     footer: validatedData.data.footer,
     siteRepresentation: validatedData.data.siteRepresentation,
     miscellaneous: validatedData.data.miscellaneous,
@@ -102,25 +99,8 @@ export const fetchHomePage = async (locale) => {
       locale: validatedLocale,
       populate: {
         metadata: { populate: "*" },
-        hero: { populate: "*" },
         about: { populate: "*" },
         featuredProjects: true,
-        skills: true,
-        testimonials: { populate: "*" },
-        faq: { populate: "*" },
-        latestPosts: true,
-        useCaseSpecificContent: {
-          on: {
-            "sections.experience": {
-              populate: {
-                experienceList: { populate: "*" },
-              },
-            },
-            "sections.services": {
-              populate: "*",
-            },
-          },
-        },
       },
     },
     {
@@ -132,14 +112,8 @@ export const fetchHomePage = async (locale) => {
   const validatedData = await validateResponse(response, homePageSchema, endpoint);
   return {
     metadata: validatedData.data.metadata,
-    hero: validatedData.data.hero,
     about: validatedData.data.about,
     featuredProjects: validatedData.data.featuredProjects,
-    skills: validatedData.data.skills,
-    testimonials: validatedData.data.testimonials,
-    faq: validatedData.data.faq,
-    latestPosts: validatedData.data.latestPosts,
-    useCaseSpecificContent: validatedData.data.useCaseSpecificContent,
   };
 };
 
@@ -212,6 +186,24 @@ export const fetchContactPage = async (locale) => {
   };
 };
 
+export const fetchAboutPage = async (locale) => {
+  const query = qs.stringify(
+    {
+      locale: locale,
+      populate: {
+        about: { populate: "*" },
+      },
+    },
+    {
+      encodeValuesOnly: true,
+    }
+  );
+  const endpoint = `/api/about?${query}`;
+  const response = await fetchData(endpoint);
+  const validatedData = await validateResponse(response, aboutPageSchema, endpoint);
+  return { about: validatedData.data.about };
+};
+
 export const fetchPrivacyPage = async (locale) => {
   const query = qs.stringify(
     {
@@ -281,6 +273,7 @@ export const fetchAllPosts = async (locale) => {
   const endpoint = `/api/posts?${query}`;
   const response = await fetchData(endpoint);
   const validatedData = await validateResponse(response, postCollectionSchema, endpoint);
+
   return validatedData.data;
 };
 

@@ -1,13 +1,6 @@
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Services from "@/components/Services";
-import Skills from "@/components/Skills";
-import Experience from "@/components/Experience";
-import Faq from "@/components/Faq";
-import Testimonials from "@/components/Testimonials";
+import AboutV2 from "@/components/AboutV2";
 import FeaturedProjects from "@/components/FeaturedProjects";
-import LatestPosts from "@/components/LatestPosts";
-import { fetchHomePage, fetchFeaturedProjects, fetchLatestPosts, fetchLayout } from "@/lib/api";
+import { fetchHomePage, fetchFeaturedProjects, fetchLayout } from "@/lib/api";
 
 export async function generateMetadata({ params }, parent) {
   let page;
@@ -46,10 +39,9 @@ export async function generateMetadata({ params }, parent) {
 
 export default async function Page({ params }) {
   const { locale } = await params;
-  const [page, projects, posts, global] = await Promise.allSettled([
+  const [page, projects, global] = await Promise.allSettled([
     fetchHomePage(locale),
     fetchFeaturedProjects(locale),
-    fetchLatestPosts(locale),
     fetchLayout(locale),
   ]);
 
@@ -64,10 +56,8 @@ export default async function Page({ params }) {
   }
 
   // Destructure/Format the necessary properties
-  const { metadata, hero, about, featuredProjects, skills, testimonials, faq, latestPosts, useCaseSpecificContent } =
+  const { metadata, about, featuredProjects } =
     page.value;
-  const dynamicData = useCaseSpecificContent[0];
-  const showServices = dynamicData?.__component === "sections.services";
   const { title, description } = metadata;
 
   let knowsAbout = null;
@@ -163,14 +153,8 @@ export default async function Page({ params }) {
       {/* Add JSON-LD to your page */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="-mt-[69px]">
-        <Hero data={hero} />
-        <About data={about} />
-        <Skills data={skills} skills={knowsAbout} />
-        {showServices ? <Services data={dynamicData} /> : <Experience data={dynamicData} />}
+        <AboutV2 data={about} locale={locale} />
         <FeaturedProjects data={featuredProjects} projects={projects} locale={locale} />
-        <Testimonials data={testimonials} />
-        <LatestPosts data={latestPosts} posts={posts} locale={locale} />
-        <Faq data={faq} />
       </div>
     </>
   );

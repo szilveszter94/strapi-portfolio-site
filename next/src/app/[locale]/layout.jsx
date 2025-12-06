@@ -2,7 +2,6 @@ import "./globals.css";
 import Announcement from "@/components/Announcement";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CallToAction from "@/components/CallToAction";
 import { fetchLayout } from "@/lib/api";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
@@ -95,23 +94,20 @@ export default async function RootLayout({ children, params }) {
     console.error(error.message);
     data = {
       announcement: null,
-      header: null,
-      cta: null,
       footer: null,
       siteRepresentation: null,
     };
   }
 
-  const { announcement, header, cta, footer, siteRepresentation } = data;
+  const { announcement, footer, siteRepresentation } = data;
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="antialiased text-gray-500 text-base">
         <ServerProviders locale={locale}>
           <Announcement data={announcement} />
-          <Header data={header} siteRepresentation={siteRepresentation} locale={locale}/>
+          <Header siteRepresentation={siteRepresentation} locale={locale}/>
           <main className="relative">{children}</main>
-          <CallToAction data={cta} />
           <Footer data={footer} siteRepresentation={siteRepresentation} locale={locale} tLayout={tLayout} />
         </ServerProviders>
       </body>

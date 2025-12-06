@@ -1,11 +1,14 @@
-import SectionHeader from './SectionHeader';
-import Image from 'next/image';
+import SectionHeader from "./SectionHeader";
+import Image from "next/image";
 import DOMPurify from "isomorphic-dompurify";
 import { marked } from "marked";
-import ShapeDivider from './ShapeDivider';
+import ShapeDivider from "./ShapeDivider";
+import BtnSecondary from "./BtnSecondary";
+import { useTranslations } from "next-intl";
 
-export default function About({ data }) {
+export default function About({ data, locale }) {
   // Destructure/Format the necessary properties
+  const tButton = useTranslations("buttons");
   const { headline, supportiveText, content, image } = data;
   const imageUrl = new URL(image.url, process.env.NEXT_PUBLIC_STRAPI).href;
 
@@ -20,7 +23,7 @@ export default function About({ data }) {
               className="rounded-t-2xl md:rounded-2xl w-full border border-neutral-200 md:border-none md:shadow-2xl"
               priority
               src={imageUrl}
-              alt={image.alternativeText ?? ''}
+              alt={image.alternativeText ?? ""}
               width={1466}
               height={1466}
               sizes="(max-width: 767px) calc(100vw - 34px), (max-width: 1024px) calc(50vw - 18px), 494px"
@@ -36,5 +39,5 @@ export default function About({ data }) {
         </div>
       </div>
     </section>
-  )
+  );
 }

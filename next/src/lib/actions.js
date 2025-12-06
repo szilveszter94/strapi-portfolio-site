@@ -18,7 +18,8 @@ const createLead = async (data) => {
 
   try {
     const res = await fetch(new URL(endpoint, process.env.NEXT_PUBLIC_STRAPI).href, options);
-
+    console.log(res);
+    
     if (!res.ok) {
       throw new Error(`Failed to create submission: ${res.status} ${res.statusText}`);
     }

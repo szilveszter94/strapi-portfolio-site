@@ -127,7 +127,7 @@ export default async function Footer({ data, siteRepresentation, locale, tLayout
                 </li>
                 <li className="text-center md:text-start">
                   <Link className="block md:inline text-base text-white/75 hover:underline" href={`/${locale}/blog/`}>
-                    {tLayout("blog")}
+                    {tLayout("news")}
                   </Link>
                 </li>
                 <li className="text-center md:text-start">

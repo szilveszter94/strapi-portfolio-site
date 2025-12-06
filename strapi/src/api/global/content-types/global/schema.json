@@ -16,17 +16,6 @@
     }
   },
   "attributes": {
-    "header": {
-      "type": "component",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "sections.header",
-      "repeatable": false,
-      "required": true
-    },
     "announcement": {
       "type": "component",
       "pluginOptions": {
@@ -46,17 +35,6 @@
         }
       },
       "component": "sections.footer",
-      "repeatable": false,
-      "required": true
-    },
-    "cta": {
-      "type": "component",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "sections.call-to-action",
       "repeatable": false,
       "required": true
     },

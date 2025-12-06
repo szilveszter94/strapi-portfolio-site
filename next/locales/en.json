@@ -3,8 +3,9 @@
     "statement": "Statement",
     "home": "Home",
     "projects": "Projects",
-    "blog": "Blog",
+    "news": "News",
     "contact": "Contact",
+    "about": "About",
     "locationAndContact": "Location & contact",
     "locationInformation": "Location information",
     "locationPrefix": "Based in ",
@@ -22,6 +23,7 @@
     "showAllServices": "Show all services",
     "viewAllProjects": "View all projects",
     "viewAllPosts": "View all posts",
+    "viewAbout": "Learn more!",
     "readMore": "Read more"
   },
   "errors": {
@@ -55,6 +57,9 @@
   },
   "contactForm": {
     "email": "Email",
+    "phone": "Telephone",
+    "location": "Location",
+    "locationPrefix": "Based in ",
     "message": "Your message",
     "submit": "Send",
     "submitting": "Sending...",

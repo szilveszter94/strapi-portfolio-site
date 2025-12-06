@@ -11,6 +11,7 @@ export default async function PostList({ postList, locale, tButton }) {
           slug={entry.slug}
           createdAt={entry.createdAt}
           locale={locale}
+          featuredImage={entry.featuredImage}
           tButton={tButton}
         />
       ))}

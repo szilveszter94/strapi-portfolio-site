@@ -1,10 +1,11 @@
 {
   "layout": {
     "statement": "Nyilatkozat",
-    "home": "Kezdőlap",
+    "home": "Főoldal",
     "projects": "Projektek",
-    "blog": "Blog",
+    "news": "Hírek",
     "contact": "Kapcsolat",
+    "about": "Rólunk",
     "locationAndContact": "Helyszín és elérhetőség",
     "locationInformation": "Helyinformációk",
     "locationPrefix": "Lakhely ",
@@ -22,6 +23,7 @@
     "showAllServices": "Minden szolgáltatás megjelenítése",
     "viewAllProjects": "Összes projekt megtekintése",
     "viewAllPosts": "Összes bejegyzés megtekintése",
+    "viewAbout": "Tudj meg többet!",
     "readMore": "További információk"
   },
   "errors": {
@@ -54,6 +56,9 @@
   },
   "contactForm": {
     "email": "Email cím",
+    "phone": "Telefon",
+    "locationPrefix": "Lakhely ",
+    "location": "Helyszín",
     "message": "Üzenet",
     "submit": "Küldés",
     "submitting": "Küldés...",
