@@ -8,7 +8,7 @@
     "about": "Rólunk",
     "locationAndContact": "Helyszín és elérhetőség",
     "locationInformation": "Helyinformációk",
-    "locationPrefix": "Lakhely ",
+    "locationPrefix": "Székhely: ",
     "serving": "Szolgáltat ",
     "contactMethods": "Kapcsolatfelvételi módok",
     "sheduleCall": "Telefonos egyeztetés",
@@ -62,7 +62,7 @@
   "contactForm": {
     "email": "Email cím",
     "phone": "Telefon",
-    "locationPrefix": "Lakhely ",
+    "locationPrefix": "Székhely: ",
     "location": "Helyszín",
     "message": "Üzenet",
     "submit": "Küldés",
