@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "clear": "cd next && rm -rf .next && rm -rf cache",
+    "clear": "cd next && rimraf .next && rimraf cache",
     "setup:next": "cd next && npm install --legacy-peer-deps",
     "setup:strapi": "cd strapi && npm install",
     "setup": "npm install && npm run setup:strapi && npm run setup:next",
@@ -9,5 +9,8 @@
   "dependencies": {
     "concurrently": "^8.2.2",
     "npm-check-updates": "^16.14.15"
+  },
+  "devDependencies": {
+    "rimraf": "^6.1.2"
   }
 }

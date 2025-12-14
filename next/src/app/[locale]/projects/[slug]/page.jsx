@@ -49,7 +49,7 @@ export async function generateMetadata({ params }, parent) {
     // Return fallback metadata in case of validation or fetch errors
     return notFound();
   }
-  
+
   if (!data || !data.metadata) {
     return {
       title: "Not available in this language",
@@ -103,7 +103,9 @@ export default async function Page(props) {
   // Destructure/Format the necessary properties
   const { title, excerpt, duration, demoUrl, repoUrl, content, featuredImage, scopes, tools, designFile, author } =
     project.value;
-  const featuredImageUrl = new URL(featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href;
+  const featuredImageUrl = featuredImage
+    ? new URL(featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href
+    : null;
   const designFileUrl = designFile ? new URL(designFile.url, process.env.NEXT_PUBLIC_STRAPI).href : null;
 
   let jsonLd = null;
@@ -145,12 +147,12 @@ export default async function Page(props) {
           },
           ...(author
             ? {
-                author: {
-                  "@type": author.isOrganization ? "Organization" : "Person",
-                  name: author.authorName,
-                  url: author.url,
-                },
-              }
+              author: {
+                "@type": author.isOrganization ? "Organization" : "Person",
+                name: author.authorName,
+                url: author.url,
+              },
+            }
             : {}),
           image: featuredImageUrl,
           keywords: [...scopes.map((scope) => scope.title), ...tools.map((tool) => tool.title)].join(", "),
@@ -186,8 +188,8 @@ export default async function Page(props) {
           ...(!isOrganization && { jobTitle: jobTitle }),
           ...(schedulingLink || socialChannels.length > 0
             ? {
-                sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
-              }
+              sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
+            }
             : {}),
           knowsAbout: extractedSkills,
           address: {
@@ -214,7 +216,7 @@ export default async function Page(props) {
               {author && <div className="text-gray-900">By {author.authorName}</div>}
               <div>{duration}</div>
             </div>
-            <Image
+            {featuredImage && <Image
               className="mb-12 rounded-2xl overflow-hidden w-full border border-neutral-100"
               priority
               src={featuredImageUrl}
@@ -222,7 +224,7 @@ export default async function Page(props) {
               width={1468}
               height={769}
               sizes="(max-width: 1152px) calc(100vw - 34px), 1118px"
-            />
+            />}
           </header>
           <div className="flex flex-col md:flex-row gap-x-5 justify-between">
             <section className="mt-12 md:mt-0 md:w-2/3 prose prose-gray prose-modifier">

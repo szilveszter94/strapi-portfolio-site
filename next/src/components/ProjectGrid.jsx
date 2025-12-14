@@ -4,12 +4,14 @@ export default function ProjectGrid({ projects, locale, buttonText }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {projects.map((entry, index) => {
-        const imageUrl = new URL(entry.featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href;
+        const imageUrl = entry.featuredImage
+          ? new URL(entry.featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href
+          : null;
         return (
           <ProjectEntry
             key={entry.id}
             featuredImageUrl={imageUrl}
-            featuredImageAlternativeText={entry.featuredImage.alternativeText}
+            featuredImageAlternativeText={entry.featuredImage?.alternativeText}
             title={entry.title}
             excerpt={entry.excerpt}
             slug={entry.slug}

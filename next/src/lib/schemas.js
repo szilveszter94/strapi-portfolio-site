@@ -69,7 +69,7 @@ const postEntrySchema = z.object({
   content: z.string(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
-  featuredImage: imageSchema,
+  featuredImage: imageSchema.nullable(),
   author: authorEntrySchema,
 });
 
@@ -82,7 +82,7 @@ const projectEntrySchema = z.object({
   repoUrl: z.string().nullable(), // Allow null values
   content: z.string(),
   duration: z.string(),
-  featuredImage: imageSchema,
+  featuredImage: imageSchema.optional().nullable(),
   scopes: z.array(
     z.object({
       id: z.number(),
@@ -263,7 +263,7 @@ export const dynamicPageMetadataSchema = z.object({
     z.object({
       title: z.string(),
       excerpt: z.string(),
-      featuredImage: imageSchema,
+      featuredImage: imageSchema.nullable(),
     })
   ),
 });

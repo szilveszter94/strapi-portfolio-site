@@ -5,20 +5,22 @@ import Image from "next/image";
 
 export default function PostEntry({ title, excerpt, slug, createdAt, locale, featuredImage, tButton }) {
   const formattedCreatedAtDate = formatDate(createdAt, locale);
-  const featuredImageUrl = new URL(featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href;
+  const featuredImageUrl = featuredImage
+    ? new URL(featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href
+    : null;
 
   return (
     <article className="relative p-4 py-6 bg-white hover:bg-neutral-100 transition border border-neutral-200 rounded-2xl">
-      <div className="relative w-full h-40 rounded-t-2xl overflow-hidden">
+      {featuredImage && <div className="relative w-full h-40 rounded-t-2xl overflow-hidden">
         <Image
           src={featuredImageUrl}
-          alt={featuredImage.alternativeText ?? ""}
+          alt={featuredImage?.alternativeText ?? ""}
           fill
           sizes="100vw"
           priority
           className="object-cover"
         />
-      </div>
+      </div>}
       <h3 className="text-gray-900 font-normal text-xl sm:text-2xl tracking-tight relative">{title}</h3>
       <p className="text-gray-700 mt-2 mb-4 relative">{excerpt}</p>
       <dl className="text-xs leading-6 flex gap-1 mb-1">
