@@ -26,6 +26,9 @@
     "viewAbout": "Află mai multe!",
     "readMore": "Citește mai mult"
   },
+  "inputs": {
+    "search": "Căutare..."
+  },
   "errors": {
     "general": {
       "noProjectsAvailable": "În acest moment nu sunt disponibile proiecte recomandate. Vă rugăm să reveniți mai târziu!",
@@ -70,10 +73,16 @@
     "gdprLink": "termenii și condițiile",
     "gdprPostfix": "și cu Politica de prelucrare a datelor cu caracter personal"
   },
-  "blog": {
+  "news": {
     "exploreAll": "Explorați toate știrile",
     "loadingPageError": "Eroare: A apărut o problemă la încărcarea paginii „Știri”.",
     "loadingNewsError": "Eroare: Am întâmpinat o problemă la încărcarea știrilor.",
     "noNews": "Nu există știri disponibile în acest moment. Vă rugăm să reveniți mai târziu!"
+  },
+  "projects": {
+    "exploreAll": "Explorați toate proiectele",
+    "loadingProjectsError": "Eroare: Am întâmpinat o problemă la încărcarea proiectelor.",
+    "loadingPageError": "Eroare: A apărut o problemă la încărcarea paginii „Proiecte”.",
+    "noProjects": "Nu există proiecte disponibile în acest moment. Vă rugăm să reveniți mai târziu!"
   }
 }

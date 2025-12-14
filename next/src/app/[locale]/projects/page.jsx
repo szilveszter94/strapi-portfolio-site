@@ -39,21 +39,32 @@ export async function generateMetadata({ params }, parent) {
   };
 }
 
-export default async function Page({ params }) {
+export default async function Page({ params, searchParams }) {
   const { locale } = await params;
   const tButton = await getTranslations({ locale, namespace: "buttons" });
-  const [page, projects, global] = await Promise.allSettled([
+  const tProjects = await getTranslations({ locale, namespace: "projects" });
+  const query = await searchParams;
+  const searchTerm = query.q ?? "";
+  const pageNumber = Number(query.page ?? 1);
+
+  const [page, projectsResult, global] = await Promise.allSettled([
     fetchProjectsPage(locale),
-    fetchAllProjects(locale),
+    fetchAllProjects(locale, searchTerm, pageNumber),
     fetchLayout(locale),
   ]);
+
+  let projects = [];
+  let pagination = null;
+  let projectsError = projectsResult.status === "rejected";
+
+  if (!projectsError) {
+    ({ projects, pagination } = projectsResult.value);
+  }
 
   if (page.status === "rejected") {
     return (
       <div className="mx-auto max-w-5xl p-4">
-        <div className="text-red-600 text-center">
-          Error: We encountered an issue while loading the &quot;Projects&quot; page.
-        </div>
+        <div className="text-red-600 text-center">{tProjects("loadingPageError")}</div>
       </div>
     );
   }
@@ -151,13 +162,13 @@ export default async function Page({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Banner headline={headline} supportiveText={supportiveText} />
       <section className="mx-auto max-w-5xl px-4 py-24">
-        <h2 className="sr-only">Explore all projects</h2>
-        {projects.status === "rejected" ? (
-          <div className="text-red-600 text-center">Error: We encountered an issue while loading the projects.</div>
-        ) : projects.value.length > 0 ? (
-          <ProjectGrid projects={projects.value} locale={locale} buttonText={tButton("readMore")} />
+        <h2 className="sr-only">{tProjects("exploreAll")}</h2>
+        {projectsError ? (
+          <div className="text-red-600 text-center">{tProjects("loadingProjectsError")}</div>
+        ) : projects.length > 0 ? (
+          <ProjectGrid projects={projects} pagination={pagination} locale={locale} buttonText={tButton("readMore")} />
         ) : (
-          <p className="text-center text-gray-500">No projects available at the moment. Please check back later!</p>
+          <p className="text-center text-gray-500">{tProjects("noProjects")}</p>
         )}
       </section>
     </>

@@ -1,3 +1,4 @@
+import { CONSTANTS } from "./constants";
 import { routing } from "./navigation";
 import {
   layoutSchema,
@@ -254,16 +255,23 @@ export const fetchNotFoundPage = async (locale) => {
 // Post-related
 //
 
-export const fetchAllPosts = async (locale) => {
+export const fetchAllPosts = async (locale, searchTerm = "", pageNumber = 1) => {
   // Fetch posts sorted by the createdAt field in descending order (most recent first)
   const query = qs.stringify(
     {
       locale: locale,
       populate: "*",
       sort: ["createdAt:desc"],
+      ...(searchTerm && {
+        filters: {
+          title: {
+            $containsi: searchTerm,
+          },
+        },
+      }),
       pagination: {
-        pageSize: 100,
-        page: 1,
+        pageSize: CONSTANTS.DEFAULT_PAGE_SIZE,
+        page: pageNumber,
       },
     },
     {
@@ -274,7 +282,10 @@ export const fetchAllPosts = async (locale) => {
   const response = await fetchData(endpoint);
   const validatedData = await validateResponse(response, postCollectionSchema, endpoint);
 
-  return validatedData.data;
+  return {
+    posts: validatedData.data,
+    pagination: response.meta.pagination,
+  };
 };
 
 export const fetchLatestPosts = async (locale) => {
@@ -359,16 +370,23 @@ export const fetchPostSitemap = async () => {
 // Project-related
 //
 
-export const fetchAllProjects = async (locale) => {
+export const fetchAllProjects = async (locale, searchTerm = "", pageNumber = 1) => {
   // Fetch projects sorted by the order field in ascending order
   const query = qs.stringify(
     {
       locale: locale,
       populate: "*",
       sort: ["order:asc"],
+      ...(searchTerm && {
+        filters: {
+          title: {
+            $containsi: searchTerm,
+          },
+        },
+      }),
       pagination: {
-        pageSize: 100,
-        page: 1,
+        pageSize: CONSTANTS.DEFAULT_PAGE_SIZE,
+        page: pageNumber,
       },
     },
     {
@@ -378,7 +396,11 @@ export const fetchAllProjects = async (locale) => {
   const endpoint = `/api/projects?${query}`;
   const response = await fetchData(endpoint);
   const validatedData = await validateResponse(response, projectCollectionSchema, endpoint);
-  return validatedData.data;
+
+  return {
+    projects: validatedData.data,
+    pagination: response.meta.pagination,
+  };
 };
 
 export const fetchFeaturedProjects = async (locale) => {

@@ -39,22 +39,32 @@ export async function generateMetadata({ params }, parent) {
   };
 }
 
-export default async function Page({ params }) {
+export default async function Page({ params, searchParams }) {
   const { locale } = await params;
   const tButton = await getTranslations({ locale, namespace: "buttons" });
   const tNews = await getTranslations({ locale, namespace: "news" });
-  const [page, posts, global] = await Promise.allSettled([
+  const query = await searchParams;
+  const searchTerm = query.q ?? "";
+  const pageNumber = Number(query.page ?? 1);
+
+  const [page, postResult, global] = await Promise.allSettled([
     fetchBlogPage(locale),
-    fetchAllPosts(locale),
+    fetchAllPosts(locale, searchTerm, pageNumber),
     fetchLayout(locale),
   ]);
+
+  let posts = [];
+  let pagination = null;
+  let postsError = postResult.status === "rejected";
+
+  if (!postsError) {
+    ({ posts, pagination } = postResult.value);
+  }
 
   if (page.status === "rejected") {
     return (
       <div className="mx-auto max-w-5xl p-4">
-        <div className="text-red-600 text-center">
-          {tNews("loadingPageError")}
-        </div>
+        <div className="text-red-600 text-center">{tNews("loadingPageError")}</div>
       </div>
     );
   }
@@ -153,10 +163,10 @@ export default async function Page({ params }) {
       <Banner headline={headline} supportiveText={supportiveText} />
       <section className="mx-auto max-w-5xl px-4 py-24">
         <h2 className="sr-only">{tNews("exploreAll")}</h2>
-        {posts.status === "rejected" ? (
+        {postsError ? (
           <div className="text-red-600 text-center">{tNews("loadingNewsError")}</div>
-        ) : posts.value.length > 0 ? (
-          <PostList postList={posts.value} locale={locale} tButton={tButton} />
+        ) : posts.length > 0 ? (
+          <PostList postList={posts} pagination={pagination} locale={locale} tButton={tButton} />
         ) : (
           <p className="text-center text-gray-500">{tNews("noNews")}</p>
         )}
