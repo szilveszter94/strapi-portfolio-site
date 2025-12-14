@@ -21,6 +21,7 @@
     "marked-highlight": "^2.2.1",
     "mini-svg-data-uri": "^1.4.4",
     "next": "^15.5.3",
+    "next-intl": "^4.5.8",
     "prismjs": "^1.29.0",
     "qs": "^6.14.0",
     "react": "19.1.1",

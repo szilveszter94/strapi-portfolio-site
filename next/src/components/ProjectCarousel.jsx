@@ -10,12 +10,14 @@ export default function ProjectCarousel({ projects, baseUrl, locale, buttonText 
     <div ref={emblaRef}>
       <div className="flex gap-6">
         {projects.map((entry) => {
-          const imageUrl = new URL(entry.featuredImage.url, baseUrl).href;
+          const imageUrl = entry.featuredImage
+            ? new URL(entry.featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href
+            : null;
           return (
             <div key={entry.id} className="min-w-0 grow-0 shrink-0 basis-10/12 max-w-lg">
               <ProjectEntry
                 featuredImageUrl={imageUrl}
-                featuredImageAlternativeText={entry.featuredImage.alternativeText}
+                featuredImageAlternativeText={entry.featuredImage?.alternativeText}
                 title={entry.title}
                 excerpt={entry.excerpt}
                 slug={entry.slug}

@@ -793,7 +793,6 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
         };
       }>;
     featuredImage: Schema.Attribute.Media<'images'> &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -925,7 +924,6 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
         };
       }>;
     featuredImage: Schema.Attribute.Media<'images'> &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
