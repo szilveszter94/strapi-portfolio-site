@@ -22,14 +22,16 @@
     "showFewerServices": "Kevesebb szolgáltatás megjelenítése",
     "showAllServices": "Minden szolgáltatás megjelenítése",
     "viewAllProjects": "Összes projekt megtekintése",
-    "viewAllPosts": "Összes bejegyzés megtekintése",
+    "viewAllNews": "Összes hír megtekintése",
     "viewAbout": "Tudj meg többet!",
     "readMore": "További információk"
   },
   "errors": {
     "general": {
       "noProjectsAvailable": "Jelenleg nincs kiemelt projekt. Kérjük, próbálkozzon később újra!",
-      "projectsNotLoading": "Hiba: Probléma történt a kiemelt projektek betöltése közben."
+      "projectsNotLoading": "Hiba: Probléma történt a kiemelt projektek betöltése közben.",
+      "noNewsAvailable": "Jelenleg nincs hír. Kérjük, próbálkozzon később újra!",
+      "newsNotLoading": "Hiba: Probléma történt a legfrissebb hírek betöltése közben."
     },
     "forms": {
       "honeypot": "Spam észlelve honeypot segítségével: ",
@@ -67,5 +69,11 @@
     "gdprPrefix": "Elolvastam és elfogadom a ",
     "gdprLink": "Felhasználási feltételeket",
     "gdprPostfix": "és hozzájárulok személyes adataim kezeléséhez."
+  },
+  "blog": {
+    "exploreAll": "Fedezze fel az összes hírt",
+    "loadingPageError": "Hiba: Probléma történt a „Hírek” oldal betöltése közben.",
+    "loadingNewsError": "Hiba: Probléma történt a hírek betöltése közben.",
+    "noNews": "Jelenleg nincs hír. Kérjük, próbálkozzon később újra!"
   }
 }

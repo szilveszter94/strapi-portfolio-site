@@ -22,7 +22,7 @@
     "showFewerServices": "Show fewer services",
     "showAllServices": "Show all services",
     "viewAllProjects": "View all projects",
-    "viewAllPosts": "View all posts",
+    "viewAllNews": "View all news",
     "viewAbout": "Learn more!",
     "readMore": "Read more"
   },
@@ -30,8 +30,8 @@
     "general": {
       "noProjectsAvailable": "No featured projects available at the moment. Please check back later!",
       "projectsNotLoading": "Error: We encountered an issue while loading the featured projects.",
-      "noPostsAvailable": "No posts available at the moment. Please check back later!",
-      "postsNotLoading": "Error: We encountered an issue while loading the latest posts."
+      "noNewsAvailable": "No news available at the moment. Please check back later!",
+      "newsNotLoading": "Error: We encountered an issue while loading the latest news."
     },
     "forms": {
       "honeypot": "Spam detected via honeypot: ",
@@ -68,5 +68,11 @@
     "gdprPrefix": "I have read the",
     "gdprLink": "privacy policy ",
     "gdprPostfix": "and consent to having my submitted information collected and processed to respond to my inquiry."
+  },
+  "news": {
+    "exploreAll": "Explore all news",
+    "loadingPageError": "Error: We encountered an issue while loading the „News” page.",
+    "loadingNewsError": "Error: We encountered an issue while loading the news.",
+    "noNews": "No news available at the moment. Please check back later!"
   }
 }

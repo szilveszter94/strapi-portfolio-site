@@ -42,6 +42,7 @@ export async function generateMetadata({ params }, parent) {
 export default async function Page({ params }) {
   const { locale } = await params;
   const tButton = await getTranslations({ locale, namespace: "buttons" });
+  const tNews = await getTranslations({ locale, namespace: "news" });
   const [page, posts, global] = await Promise.allSettled([
     fetchBlogPage(locale),
     fetchAllPosts(locale),
@@ -52,7 +53,7 @@ export default async function Page({ params }) {
     return (
       <div className="mx-auto max-w-5xl p-4">
         <div className="text-red-600 text-center">
-          Error: We encountered an issue while loading the &quot;Blog&quot; page.
+          {tNews("loadingPageError")}
         </div>
       </div>
     );
@@ -151,13 +152,13 @@ export default async function Page({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Banner headline={headline} supportiveText={supportiveText} />
       <section className="mx-auto max-w-5xl px-4 py-24">
-        <h2 className="sr-only">Explore all blog posts organized by newest first</h2>
+        <h2 className="sr-only">{tNews("exploreAll")}</h2>
         {posts.status === "rejected" ? (
-          <div className="text-red-600 text-center">Error: We encountered an issue while loading the blog posts.</div>
+          <div className="text-red-600 text-center">{tNews("loadingNewsError")}</div>
         ) : posts.value.length > 0 ? (
           <PostList postList={posts.value} locale={locale} tButton={tButton} />
         ) : (
-          <p className="text-center text-gray-500">No posts available at the moment. Please check back later!</p>
+          <p className="text-center text-gray-500">{tNews("noNews")}</p>
         )}
       </section>
     </>

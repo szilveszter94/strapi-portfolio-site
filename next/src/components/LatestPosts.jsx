@@ -16,14 +16,14 @@ export default function LatestPosts({ data, posts, locale }) {
       <div className="relative mx-auto max-w-5xl px-4">
         <SectionHeader headline={headline} supportiveText={supportiveText} />
         {posts.status === "rejected" ? (
-          <div className="text-red-600 text-center">{tErrors("postsNotLoading")}</div>
+          <div className="text-red-600 text-center">{tErrors("newsNotLoading")}</div>
         ) : posts.value.length > 0 ? (
           <PostList postList={posts.value} locale={locale} tButton={tButton} />
         ) : (
-          <p className="text-center text-gray-500">{tErrors("noPostsAvailable")}</p>
+          <p className="text-center text-gray-500">{tErrors("noNewsAvailable")}</p>
         )}
         <div className="mt-6 md:mt-12 flex items-center justify-center gap-x-4">
-          <BtnSecondary label={tButton("viewAllPosts")} url={`/${locale}/blog`} showIcon={true} />
+          <BtnSecondary label={tButton("viewAllNews")} url={`/${locale}/blog`} showIcon={true} />
         </div>
       </div>
     </section>

@@ -22,14 +22,16 @@
     "showFewerServices": "Afișați mai puține servicii",
     "showAllServices": "Afișați toate serviciile",
     "viewAllProjects": "Vizualizați toate proiectele",
-    "viewAllPosts": "Vezi toate postările",
+    "viewAllNews": "Vezi toate știrile",
     "viewAbout": "Află mai multe!",
     "readMore": "Citește mai mult"
   },
   "errors": {
     "general": {
       "noProjectsAvailable": "În acest moment nu sunt disponibile proiecte recomandate. Vă rugăm să reveniți mai târziu!",
-      "projectsNotLoading": "Eroare: Am întâmpinat o problemă la încărcarea proiectelor prezentate."
+      "projectsNotLoading": "Eroare: Am întâmpinat o problemă la încărcarea proiectelor prezentate.",
+      "noNewsAvailable": "Nu există știri disponibile în acest moment. Vă rugăm să reveniți mai târziu!",
+      "newsNotLoading": "Eroare: Am întâmpinat o problemă la încărcarea ultimelor știri."
     },
     "forms": {
       "honeypot": "Spam detectat prin câmpul honeypot: ",
@@ -67,5 +69,11 @@
     "gdprPrefix": "Sunt de acord cu ",
     "gdprLink": "termenii și condițiile",
     "gdprPostfix": "și cu Politica de prelucrare a datelor cu caracter personal"
+  },
+  "blog": {
+    "exploreAll": "Explorați toate știrile",
+    "loadingPageError": "Eroare: A apărut o problemă la încărcarea paginii „Știri”.",
+    "loadingNewsError": "Eroare: Am întâmpinat o problemă la încărcarea știrilor.",
+    "noNews": "Nu există știri disponibile în acest moment. Vă rugăm să reveniți mai târziu!"
   }
 }
