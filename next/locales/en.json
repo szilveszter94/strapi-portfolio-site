@@ -8,7 +8,7 @@
     "about": "About",
     "locationAndContact": "Location & contact",
     "locationInformation": "Location information",
-    "locationPrefix": "Based in ",
+    "locationPrefix": "Headquarters: ",
     "serving": "Serving ",
     "contactMethods": "Contact methods",
     "sheduleCall": "Shedule a call",
@@ -25,6 +25,9 @@
     "viewAllNews": "View all news",
     "viewAbout": "Learn more!",
     "readMore": "Read more"
+  },
+  "inputs": {
+    "search": "Search..."
   },
   "errors": {
     "general": {
@@ -59,7 +62,7 @@
     "email": "Email",
     "phone": "Telephone",
     "location": "Location",
-    "locationPrefix": "Based in ",
+    "locationPrefix": "Headquarters: ",
     "message": "Your message",
     "submit": "Send",
     "submitting": "Sending...",
@@ -74,5 +77,11 @@
     "loadingPageError": "Error: We encountered an issue while loading the „News” page.",
     "loadingNewsError": "Error: We encountered an issue while loading the news.",
     "noNews": "No news available at the moment. Please check back later!"
+  },
+  "projects": {
+    "exploreAll": "Explore all projects",
+    "loadingProjectsError": "Error: We encountered an issue while loading the projects.",
+    "loadingPageError": "Error: We encountered an issue while loading the „Projects” page.",
+    "noProjects": "No projects available at the moment. Please check back later!"
   }
 }

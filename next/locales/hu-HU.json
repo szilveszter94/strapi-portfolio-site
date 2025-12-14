@@ -8,7 +8,7 @@
     "about": "Rólunk",
     "locationAndContact": "Helyszín és elérhetőség",
     "locationInformation": "Helyinformációk",
-    "locationPrefix": "Lakhely ",
+    "locationPrefix": "Székhely: ",
     "serving": "Szolgáltat ",
     "contactMethods": "Kapcsolatfelvételi módok",
     "sheduleCall": "Telefonos egyeztetés",
@@ -25,6 +25,9 @@
     "viewAllNews": "Összes hír megtekintése",
     "viewAbout": "Tudj meg többet!",
     "readMore": "További információk"
+  },
+  "inputs": {
+    "search": "Keresés..."
   },
   "errors": {
     "general": {
@@ -59,7 +62,7 @@
   "contactForm": {
     "email": "Email cím",
     "phone": "Telefon",
-    "locationPrefix": "Lakhely ",
+    "locationPrefix": "Székhely: ",
     "location": "Helyszín",
     "message": "Üzenet",
     "submit": "Küldés",
@@ -70,10 +73,16 @@
     "gdprLink": "Felhasználási feltételeket",
     "gdprPostfix": "és hozzájárulok személyes adataim kezeléséhez."
   },
-  "blog": {
+  "news": {
     "exploreAll": "Fedezze fel az összes hírt",
     "loadingPageError": "Hiba: Probléma történt a „Hírek” oldal betöltése közben.",
     "loadingNewsError": "Hiba: Probléma történt a hírek betöltése közben.",
     "noNews": "Jelenleg nincs hír. Kérjük, próbálkozzon később újra!"
+  },
+  "projects": {
+    "exploreAll": "Fedezze fel az összes projektet",
+    "loadingProjectsError": "Hiba: Probléma történt a projektek betöltése közben.",
+    "loadingPageError": "Hiba: Probléma történt a „Projektek” oldal betöltése közben.",
+    "noProjects": "Jelenleg nincs elérhető projekt. Kérjük, próbálkozzon később újra!"
   }
 }

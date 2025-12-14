@@ -5,6 +5,7 @@ import NoSSRWrapper from "@/components/NoSSRWrapper";
 import Link from "next/link";
 import ContactLink from "@/components/ContactLink";
 import { getTranslations } from "next-intl/server";
+import { CONSTANTS } from "@/lib/constants";
 
 export async function generateMetadata({ params }, parent) {
   const { locale } = await params;
@@ -212,7 +213,7 @@ export default async function Page({ params }) {
               </div>
               <div className="w-full h-64 rounded-xl overflow-hidden border border-neutral-200">
                 <iframe
-                  src={`https://www.google.com/maps?q=${encodeURIComponent(addressLocality)}&hl=${locale}&z=14&output=embed`}
+                  src={`https://www.google.com/maps?q=&q=${CONSTANTS.LAT},${CONSTANTS.LON}&hl=${locale}&z=15&output=embed`}
                   width="100%"
                   height="100%"
                   loading="lazy"
