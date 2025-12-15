@@ -6,7 +6,7 @@ import BackTo from "@/components/BackTo";
 import BtnPrimary from "@/components/BtnPrimary";
 import BtnSecondary from "@/components/BtnSecondary";
 import SocialShare from "@/components/SocialShare";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { fetchProjectBySlug, fetchAllSlugs, fetchDynamicPageMetadata, fetchLayout } from "@/lib/api";
 import Prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
@@ -97,7 +97,7 @@ export default async function Page(props) {
 
   // If no project data is found, trigger a 404
   if (!project.value) {
-    notFound();
+    redirect(`/${locale}/projects/`);
   }
 
   // Destructure/Format the necessary properties

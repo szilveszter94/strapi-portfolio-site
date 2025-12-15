@@ -4,7 +4,7 @@ import { markedHighlight } from "marked-highlight";
 import Image from "next/image";
 import BackTo from "@/components/BackTo";
 import SocialShare from "@/components/SocialShare";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { fetchPostBySlug, fetchAllSlugs, fetchDynamicPageMetadata, fetchLayout } from "@/lib/api";
 import { formatDate } from "@/lib/utils";
 import Prism from "prismjs";
@@ -101,7 +101,7 @@ export default async function Page(props) {
 
   // If no post data is found, trigger a 404
   if (!post.value) {
-    notFound();
+    redirect(`/${locale}/blog/`);
   }
 
   // Destructure/Format the necessary properties
