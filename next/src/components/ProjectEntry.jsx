@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/16/solid";
+import { formatDate } from "@/lib/utils";
 
 export default function ProjectEntry({
   featuredImageUrl,
@@ -8,27 +9,36 @@ export default function ProjectEntry({
   title,
   excerpt,
   slug,
+  createdAt,
   locale,
   buttonText,
   priority = false,
 }) {
-
+  const formattedCreatedAtDate = formatDate(createdAt, locale);
   return (
     <article className="bg-white hover:bg-neutral-100 transition rounded-2xl border border-neutral-200 relative h-full">
-      {featuredImageUrl && <Image
-        draggable="false"
-        className="rounded-t-2xl overflow-hidden w-full"
-        priority={priority}
-        {...(priority ? { priority: true } : { loading: "lazy" })}
-        src={featuredImageUrl}
-        alt={featuredImageAlternativeText ?? ""}
-        width={1468}
-        height={769}
-        sizes="(max-width: 639px) calc(100vw - 34px), (max-width: 1024px) calc(50vw - 30px), 482px"
-      />}
+      {featuredImageUrl && (
+        <Image
+          draggable="false"
+          className="rounded-t-2xl overflow-hidden w-full"
+          priority={priority}
+          {...(priority ? { priority: true } : { loading: "lazy" })}
+          src={featuredImageUrl}
+          alt={featuredImageAlternativeText ?? ""}
+          width={1468}
+          height={769}
+          sizes="(max-width: 639px) calc(100vw - 34px), (max-width: 1024px) calc(50vw - 30px), 482px"
+        />
+      )}
       <div className="p-6">
         <h3 className="text-gray-900 font-normal text-xl sm:text-2xl tracking-tight">{title}</h3>
         <p className="text-gray-700 mt-2 mb-4">{excerpt}</p>
+        <dl className="text-xs leading-6 flex gap-1 mb-1">
+          <dt className="sr-only">Posted on:</dt>
+          <dd>
+            <time dateTime={createdAt}>{formattedCreatedAtDate}</time>
+          </dd>
+        </dl>{" "}
         <Link
           href={`/${locale}/projects/${slug}/`}
           className="

@@ -21,6 +21,7 @@ export default function ProjectGrid({ projects, pagination, locale, buttonText }
               title={entry.title}
               excerpt={entry.excerpt}
               slug={entry.slug}
+              createdAt={entry.createdAt}
               priority={index < 4} // Prioritize the first 4 project images
               locale={locale}
               buttonText={buttonText}

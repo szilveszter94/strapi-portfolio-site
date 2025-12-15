@@ -81,6 +81,8 @@ const projectEntrySchema = z.object({
   demoUrl: z.string().nullable(), // Allow null values
   repoUrl: z.string().nullable(), // Allow null values
   content: z.string(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
   duration: z.string(),
   featuredImage: imageSchema.optional().nullable(),
   scopes: z.array(
