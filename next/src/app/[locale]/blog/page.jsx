@@ -1,5 +1,7 @@
 import Banner from "@/components/Banner";
+import Pagination from "@/components/Pagination";
 import PostList from "@/components/PostList";
+import { SearchInput } from "@/components/SearchInput";
 import { fetchBlogPage, fetchAllPosts, fetchLayout } from "@/lib/api";
 import { getTranslations } from "next-intl/server";
 
@@ -142,8 +144,8 @@ export default async function Page({ params, searchParams }) {
           ...(!isOrganization && { jobTitle: jobTitle }),
           ...(schedulingLink || socialChannels.length > 0
             ? {
-                sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
-              }
+              sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
+            }
             : {}),
           knowsAbout: extractedSkills,
           address: {
@@ -163,13 +165,19 @@ export default async function Page({ params, searchParams }) {
       <Banner headline={headline} supportiveText={supportiveText} />
       <section className="mx-auto max-w-5xl px-4 py-24">
         <h2 className="sr-only">{tNews("exploreAll")}</h2>
+        <div className="mb-3">
+          <SearchInput />
+        </div>
         {postsError ? (
           <div className="text-red-600 text-center">{tNews("loadingNewsError")}</div>
         ) : posts.length > 0 ? (
-          <PostList postList={posts} pagination={pagination} locale={locale} tButton={tButton} />
+          <PostList postList={posts} locale={locale} tButton={tButton} />
         ) : (
           <p className="text-center text-gray-500">{tNews("noNews")}</p>
         )}
+        <div className="flex justify-center mt-5">
+          <Pagination paginationData={pagination} />
+        </div>
       </section>
     </>
   );

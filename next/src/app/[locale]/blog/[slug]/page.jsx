@@ -6,6 +6,7 @@ import BackTo from "@/components/BackTo";
 import SocialShare from "@/components/SocialShare";
 import { notFound } from "next/navigation";
 import { fetchPostBySlug, fetchAllSlugs, fetchDynamicPageMetadata, fetchLayout } from "@/lib/api";
+import { getTranslations } from "next-intl/server";
 import { formatDate } from "@/lib/utils";
 import Prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
@@ -88,6 +89,8 @@ export default async function Page(props) {
   const params = await props.params;
   const slug = params.slug;
   const locale = params.locale;
+  const tButton = await getTranslations({ locale, namespace: "buttons" });
+  const tNews = await getTranslations({ locale, namespace: "news" });
 
   const [post, global] = await Promise.allSettled([fetchPostBySlug(slug, locale), fetchLayout(locale)]);
 
@@ -106,7 +109,9 @@ export default async function Page(props) {
 
   // Destructure/Format the necessary properties
   const { title, excerpt, content, createdAt, updatedAt, featuredImage, author } = post.value;
-  const featuredImageUrl = new URL(featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href;
+  const featuredImageUrl = featuredImage
+    ? new URL(featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href
+    : null;
 
   let localeString = "en-US";
   let jsonLd = null;
@@ -148,12 +153,12 @@ export default async function Page(props) {
           inLanguage: htmlLanguageTag,
           ...(author
             ? {
-                author: {
-                  "@type": author.isOrganization ? "Organization" : "Person",
-                  name: author.authorName,
-                  url: author.url,
-                },
-              }
+              author: {
+                "@type": author.isOrganization ? "Organization" : "Person",
+                name: author.authorName,
+                url: author.url,
+              },
+            }
             : {}),
           publisher: {
             "@id": isOrganization
@@ -208,8 +213,8 @@ export default async function Page(props) {
           ...(!isOrganization && { jobTitle: jobTitle }),
           ...(schedulingLink || socialChannels.length > 0
             ? {
-                sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
-              }
+              sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
+            }
             : {}),
           knowsAbout: extractedSkills,
           address: {
@@ -230,7 +235,7 @@ export default async function Page(props) {
     <>
       {/* Add JSON-LD to your page */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <BackTo label="Back to Blog" url={`/${locale}/blog/`} />
+      <BackTo label={tButton("backToNews")} url={`/${locale}/blog/`} />
       <div className="mx-auto max-w-5xl px-4">
         <article>
           <header>
@@ -239,24 +244,25 @@ export default async function Page(props) {
             <div className="text-sm mb-12">
               {author && <div className="text-gray-900">By {author.authorName}</div>}
               <div>
-                Published <time dateTime={createdAt}>{formattedCreatedAtDate}</time>
+                {tNews("published")} <time dateTime={createdAt}>{formattedCreatedAtDate}</time>
                 {/* Assuming precise time-sensitive updates are not a requirement */}
                 {formattedCreatedAtDate !== formattedUpdatedAtDate && (
                   <>
-                    <span className="px-1">·</span>Updated <time dateTime={updatedAt}>{formattedUpdatedAtDate}</time>
+                    <span className="px-1">·</span>{tNews("updated")} <time dateTime={updatedAt}>{formattedUpdatedAtDate}</time>
                   </>
                 )}
               </div>
             </div>
-            <Image
-              className="mb-12 rounded-2xl overflow-hidden w-full border border-neutral-100"
-              priority
-              src={featuredImageUrl}
-              alt={featuredImage.alternativeText ?? ""}
-              width={1468}
-              height={769}
-              sizes="(max-width: 1024px) calc(100vw - 34px), 990px"
-            />
+            {featuredImage &&
+              <Image
+                className="mb-12 rounded-2xl overflow-hidden w-full border border-neutral-100"
+                priority
+                src={featuredImageUrl}
+                alt={featuredImage?.alternativeText ?? ""}
+                width={1468}
+                height={769}
+                sizes="(max-width: 1024px) calc(100vw - 34px), 990px"
+              />}
           </header>
           <div className="mx-auto prose prose-gray prose-modifier">
             <div
@@ -268,7 +274,7 @@ export default async function Page(props) {
           </div>
         </article>
       </div>
-      <BackTo label="Back to Blog" url={`/${locale}/blog/`} />
+      <BackTo label={tButton("backToNews")} url={`/${locale}/blog/`} />
     </>
   );
 }

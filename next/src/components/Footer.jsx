@@ -33,7 +33,7 @@ export default async function Footer({ data, siteRepresentation, locale, tLayout
       <div className="bg-neutral-950">
         <div className="mx-auto max-w-5xl p-4">
           <div className="text-red-600 text-center">
-            Error: We encountered an issue while loading the &quot;Footer&quot; component.
+            {tLayout("footerNotLoading")}
           </div>
         </div>
       </div>
@@ -111,7 +111,7 @@ export default async function Footer({ data, siteRepresentation, locale, tLayout
             </div>
             {/* Navigation */}
             <div className="mt-[6px] md:mt-0 col-span-1">
-              <h3 className="text-white font-medium text-xl tracking-tight text-center md:text-start">Navigation</h3>
+              <h3 className="text-white font-medium text-xl tracking-tight text-center md:text-start">{tLayout("navigation")}</h3>
               <ul className="mt-4 space-y-4">
                 <li className="text-center md:text-start">
                   <Link className="block md:inline text-base text-white/75 hover:underline" href={`/${locale}/`}>
