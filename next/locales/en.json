@@ -14,7 +14,11 @@
     "sheduleCall": "Shedule a call",
     "backToTop": "Back to top",
     "followMe": "Follow us",
-    "privacyPolicy": "Privacy policy"
+    "privacyPolicy": "Privacy policy",
+    "sharePage": "Share this page",
+    "iconNotFound": "Icon not found",
+    "navigation": "Navigation",
+    "footerNotLoading": "Error: We encountered an issue while loading the „Footer” component."
   },
   "buttons": {
     "hideDescription": "Hide description",
@@ -24,7 +28,9 @@
     "viewAllProjects": "View all projects",
     "viewAllNews": "View all news",
     "viewAbout": "Learn more!",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "backToProjects": "Back To Projects",
+    "backToNews": "Back To News"
   },
   "inputs": {
     "search": "Search..."
@@ -76,7 +82,9 @@
     "exploreAll": "Explore all news",
     "loadingPageError": "Error: We encountered an issue while loading the „News” page.",
     "loadingNewsError": "Error: We encountered an issue while loading the news.",
-    "noNews": "No news available at the moment. Please check back later!"
+    "noNews": "No news available at the moment. Please check back later!",
+    "published": "Published",
+    "updated": "Updated"
   },
   "projects": {
     "exploreAll": "Explore all projects",

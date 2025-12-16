@@ -1,5 +1,7 @@
 import Banner from "@/components/Banner";
+import Pagination from "@/components/Pagination";
 import ProjectGrid from "@/components/ProjectGrid";
+import { SearchInput } from "@/components/SearchInput";
 import { fetchProjectsPage, fetchAllProjects, fetchLayout } from "@/lib/api";
 import { getTranslations } from "next-intl/server";
 
@@ -142,8 +144,8 @@ export default async function Page({ params, searchParams }) {
           ...(!isOrganization && { jobTitle: jobTitle }),
           ...(schedulingLink || socialChannels.length > 0
             ? {
-                sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
-              }
+              sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
+            }
             : {}),
           knowsAbout: extractedSkills,
           address: {
@@ -163,13 +165,19 @@ export default async function Page({ params, searchParams }) {
       <Banner headline={headline} supportiveText={supportiveText} />
       <section className="mx-auto max-w-5xl px-4 py-24">
         <h2 className="sr-only">{tProjects("exploreAll")}</h2>
+        <div className="mb-3">
+          <SearchInput />
+        </div>
         {projectsError ? (
           <div className="text-red-600 text-center">{tProjects("loadingProjectsError")}</div>
         ) : projects.length > 0 ? (
-          <ProjectGrid projects={projects} pagination={pagination} locale={locale} buttonText={tButton("readMore")} />
+          <ProjectGrid projects={projects} locale={locale} buttonText={tButton("readMore")} />
         ) : (
           <p className="text-center text-gray-500">{tProjects("noProjects")}</p>
         )}
+        <div className="flex justify-center mt-5">
+          <Pagination paginationData={pagination} />
+        </div>
       </section>
     </>
   );

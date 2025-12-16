@@ -8,6 +8,7 @@ import BtnSecondary from "@/components/BtnSecondary";
 import SocialShare from "@/components/SocialShare";
 import { notFound, redirect } from "next/navigation";
 import { fetchProjectBySlug, fetchAllSlugs, fetchDynamicPageMetadata, fetchLayout } from "@/lib/api";
+import { getTranslations } from "next-intl/server";
 import Prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
 import "prismjs/components/prism-scss";
@@ -84,6 +85,7 @@ export default async function Page(props) {
   const params = await props.params;
   const slug = params.slug;
   const locale = params.locale;
+  const tButton = await getTranslations({ locale, namespace: "buttons" });
 
   const [project, global] = await Promise.allSettled([fetchProjectBySlug(slug, locale), fetchLayout(locale)]);
 
@@ -206,7 +208,7 @@ export default async function Page(props) {
     <>
       {/* Add JSON-LD to your page */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <BackTo label="Back to Projects" url={`/${locale}/projects/`} />
+      <BackTo label={tButton("backToProjects")} url={`/${locale}/projects/`} />
       <div className="mx-auto max-w-6xl px-4">
         <article>
           <header>
@@ -302,7 +304,7 @@ export default async function Page(props) {
           </div>
         </article>
       </div>
-      <BackTo label="Back to Projects" url={`/${locale}/projects/`} />
+      <BackTo label={tButton("backToProjects")} url={`/${locale}/projects/`} />
     </>
   );
 }

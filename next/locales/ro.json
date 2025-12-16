@@ -14,7 +14,11 @@
     "backToTop": "Înapoi sus",
     "serving": "Servire ",
     "followMe": "Urmăriți-ne",
-    "privacyPolicy": "Politica de confidențialitate"
+    "privacyPolicy": "Politica de confidențialitate",
+    "sharePage": "Distribuiți această pagină",
+    "iconNotFound": "Icon neidentificată",
+    "navigation": "Navigare",
+    "footerNotLoading": "Eroare: A apărut o problemă la încărcarea componentei „Footer”."
   },
   "buttons": {
     "hideDescription": "Ascunde descrierea",
@@ -24,7 +28,9 @@
     "viewAllProjects": "Vizualizați toate proiectele",
     "viewAllNews": "Vezi toate știrile",
     "viewAbout": "Află mai multe!",
-    "readMore": "Citește mai mult"
+    "readMore": "Citește mai mult",
+    "backToProjects": "Înapoi La Proiecte",
+    "backToNews": "Înapoi La Știri"
   },
   "inputs": {
     "search": "Căutare..."
@@ -44,7 +50,6 @@
       "processing": "Eroare la procesarea datelor formularului: ",
       "generalProcessing": "Eroare la procesarea formularului"
     },
-
     "zodValidation": {
       "email": {
         "required": "Adresa de email este obligatorie.",
@@ -77,7 +82,9 @@
     "exploreAll": "Explorați toate știrile",
     "loadingPageError": "Eroare: A apărut o problemă la încărcarea paginii „Știri”.",
     "loadingNewsError": "Eroare: Am întâmpinat o problemă la încărcarea știrilor.",
-    "noNews": "Nu există știri disponibile în acest moment. Vă rugăm să reveniți mai târziu!"
+    "noNews": "Nu există știri disponibile în acest moment. Vă rugăm să reveniți mai târziu!",
+    "published": "Publicat",
+    "updated": "Actualizat"
   },
   "projects": {
     "exploreAll": "Explorați toate proiectele",

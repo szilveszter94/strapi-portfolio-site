@@ -14,7 +14,11 @@
     "sheduleCall": "Telefonos egyeztetés",
     "backToTop": "Vissza az elejére",
     "followMe": "Kövess be",
-    "privacyPolicy": "Adatvédelmi irányelvek"
+    "privacyPolicy": "Adatvédelmi irányelvek",
+    "sharePage": "Ossza meg ezt az oldalt",
+    "iconNotFound": "Az ikon nem található",
+    "navigation": "Navigálás",
+    "footerNotLoading": "Hiba: Probléma történt a „Lábléc” komponens betöltése közben."
   },
   "buttons": {
     "hideDescription": "Leírás elrejtése",
@@ -24,7 +28,9 @@
     "viewAllProjects": "Összes projekt megtekintése",
     "viewAllNews": "Összes hír megtekintése",
     "viewAbout": "Tudj meg többet!",
-    "readMore": "További információk"
+    "readMore": "További információk",
+    "backToProjects": "Vissza A Projektekhez",
+    "backToNews": "Vissza A Hírekhez"
   },
   "inputs": {
     "search": "Keresés..."
@@ -44,7 +50,6 @@
       "processing": "Hiba történt az űrlap adatainak feldolgozása közben: ",
       "generalProcessing": "Hiba az űrlap feldolgozása során"
     },
-
     "zodValidation": {
       "email": {
         "required": "Az email megadása kötelező.",
@@ -77,7 +82,9 @@
     "exploreAll": "Fedezze fel az összes hírt",
     "loadingPageError": "Hiba: Probléma történt a „Hírek” oldal betöltése közben.",
     "loadingNewsError": "Hiba: Probléma történt a hírek betöltése közben.",
-    "noNews": "Jelenleg nincs hír. Kérjük, próbálkozzon később újra!"
+    "noNews": "Jelenleg nincs hír. Kérjük, próbálkozzon később újra!",
+    "published": "Közzétéve",
+    "updated": "Frissítve"
   },
   "projects": {
     "exploreAll": "Fedezze fel az összes projektet",
