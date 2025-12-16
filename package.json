@@ -9,7 +9,6 @@
   "dependencies": {
     "concurrently": "^8.2.2",
     "npm-check-updates": "^16.14.15",
-    "use-debounce": "^10.0.6"
   },
   "devDependencies": {
     "rimraf": "^6.1.2"

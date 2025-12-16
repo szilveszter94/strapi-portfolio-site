@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { useDebouncedCallback } from "use-debounce";
 import { useTranslations } from "next-intl";
+import useDebouncedCallback from "./DebounceCallback";
 
 export function SearchInput() {
   const { replace } = useRouter();
