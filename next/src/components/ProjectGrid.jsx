@@ -7,25 +7,21 @@ export default function ProjectGrid({ projects, locale, buttonText }) {
         const imageUrl = entry.featuredImage
           ? new URL(entry.featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href
           : null;
-          return (
-            <ProjectEntry
-              key={entry.id}
-              featuredImageUrl={imageUrl}
-              featuredImageAlternativeText={entry.featuredImage.alternativeText}
-              title={entry.title}
-              excerpt={entry.excerpt}
-              slug={entry.slug}
-              createdAt={entry.createdAt}
-              priority={index < 4} // Prioritize the first 4 project images
-              locale={locale}
-              buttonText={buttonText}
-            />
-          );
-        })}
-      </div>
-      <div className="flex justify-center mt-5">
-        <Pagination paginationData={pagination} />
-      </div>
-    </>
+        return (
+          <ProjectEntry
+            key={entry.id}
+            featuredImageUrl={imageUrl}
+            featuredImageAlternativeText={entry.featuredImage?.alternativeText}
+            title={entry.title}
+            excerpt={entry.excerpt}
+            slug={entry.slug}
+            createdAt={entry.createdAt}
+            priority={index < 4} // Prioritize the first 4 project images
+            locale={locale}
+            buttonText={buttonText}
+          />
+        );
+      })}
+    </div>
   );
 }
