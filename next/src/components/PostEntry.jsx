@@ -3,8 +3,8 @@ import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 
-export default function PostEntry({ title, excerpt, slug, createdAt, locale, featuredImage, tButton }) {
-  const formattedCreatedAtDate = formatDate(createdAt, locale);
+export default function PostEntry({ title, excerpt, slug, publishedDate, locale, featuredImage, tButton }) {
+  const formattedCreatedAtDate = formatDate(publishedDate, locale);
   const featuredImageUrl = featuredImage
     ? new URL(featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href
     : null;
@@ -26,7 +26,7 @@ export default function PostEntry({ title, excerpt, slug, createdAt, locale, fea
       <dl className="text-xs leading-6 flex gap-1 mb-1">
         <dt className="sr-only">Posted on:</dt>
         <dd>
-          <time dateTime={createdAt}>{formattedCreatedAtDate}</time>
+          <time dateTime={publishedDate}>{formattedCreatedAtDate}</time>
         </dd>
       </dl>{" "}
       <Link

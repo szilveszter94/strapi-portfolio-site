@@ -33,7 +33,9 @@
     "backToNews": "Înapoi La Știri"
   },
   "inputs": {
-    "search": "Căutare..."
+    "search": "Căutare...",
+    "oldest": "Cel mai vechi",
+    "newest": "Cel mai nou"
   },
   "errors": {
     "general": {
@@ -83,13 +85,15 @@
     "loadingPageError": "Eroare: A apărut o problemă la încărcarea paginii „Știri”.",
     "loadingNewsError": "Eroare: Am întâmpinat o problemă la încărcarea știrilor.",
     "noNews": "Nu există știri disponibile în acest moment. Vă rugăm să reveniți mai târziu!",
-    "published": "Publicat",
-    "updated": "Actualizat"
+    "published": "Publicat: ",
+    "updated": "Actualizat: "
   },
   "projects": {
     "exploreAll": "Explorați toate proiectele",
     "loadingProjectsError": "Eroare: Am întâmpinat o problemă la încărcarea proiectelor.",
     "loadingPageError": "Eroare: A apărut o problemă la încărcarea paginii „Proiecte”.",
-    "noProjects": "Nu există proiecte disponibile în acest moment. Vă rugăm să reveniți mai târziu!"
+    "noProjects": "Nu există proiecte disponibile în acest moment. Vă rugăm să reveniți mai târziu!",
+    "published": "Publicat: ",
+    "duration": "Durata proiectului: "
   }
 }

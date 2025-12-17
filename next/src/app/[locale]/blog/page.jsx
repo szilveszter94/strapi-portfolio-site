@@ -2,7 +2,9 @@ import Banner from "@/components/Banner";
 import Pagination from "@/components/Pagination";
 import PostList from "@/components/PostList";
 import { SearchInput } from "@/components/SearchInput";
+import { SortButton } from "@/components/SortButton";
 import { fetchBlogPage, fetchAllPosts, fetchLayout } from "@/lib/api";
+import { SORT_OPTIONS } from "@/lib/constants";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({ params }, parent) {
@@ -48,10 +50,11 @@ export default async function Page({ params, searchParams }) {
   const query = await searchParams;
   const searchTerm = query.q ?? "";
   const pageNumber = Number(query.page ?? 1);
+  const sort = query.sort ?? SORT_OPTIONS.PUBLISHED_DESC.value;
 
   const [page, postResult, global] = await Promise.allSettled([
     fetchBlogPage(locale),
-    fetchAllPosts(locale, searchTerm, pageNumber),
+    fetchAllPosts(locale, searchTerm, pageNumber, sort),
     fetchLayout(locale),
   ]);
 
@@ -144,8 +147,8 @@ export default async function Page({ params, searchParams }) {
           ...(!isOrganization && { jobTitle: jobTitle }),
           ...(schedulingLink || socialChannels.length > 0
             ? {
-              sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
-            }
+                sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
+              }
             : {}),
           knowsAbout: extractedSkills,
           address: {
@@ -165,8 +168,9 @@ export default async function Page({ params, searchParams }) {
       <Banner headline={headline} supportiveText={supportiveText} />
       <section className="mx-auto max-w-5xl px-4 py-24">
         <h2 className="sr-only">{tNews("exploreAll")}</h2>
-        <div className="mb-3">
+        <div className="flex justify-between mb-3">
           <SearchInput />
+          <SortButton />
         </div>
         {postsError ? (
           <div className="text-red-600 text-center">{tNews("loadingNewsError")}</div>

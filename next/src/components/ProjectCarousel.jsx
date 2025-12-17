@@ -21,7 +21,7 @@ export default function ProjectCarousel({ projects, baseUrl, locale, buttonText 
                 title={entry.title}
                 excerpt={entry.excerpt}
                 slug={entry.slug}
-                createdAt={entry.createdAt}
+                publishedDate={entry.publishedDate}
                 priority={false}
                 locale={locale}
                 buttonText={buttonText}

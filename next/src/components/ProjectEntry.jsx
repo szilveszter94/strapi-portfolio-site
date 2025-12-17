@@ -9,12 +9,12 @@ export default function ProjectEntry({
   title,
   excerpt,
   slug,
-  createdAt,
+  publishedDate,
   locale,
   buttonText,
   priority = false,
 }) {
-  const formattedCreatedAtDate = formatDate(createdAt, locale);
+  const formattedpublishedDateDate = formatDate(publishedDate, locale);
   return (
     <article className="bg-white hover:bg-neutral-100 transition rounded-2xl border border-neutral-200 relative h-full">
       {featuredImageUrl && (
@@ -36,7 +36,7 @@ export default function ProjectEntry({
         <dl className="text-xs leading-6 flex gap-1 mb-1">
           <dt className="sr-only">Posted on:</dt>
           <dd>
-            <time dateTime={createdAt}>{formattedCreatedAtDate}</time>
+            <time dateTime={publishedDate}>{formattedpublishedDateDate}</time>
           </dd>
         </dl>{" "}
         <Link

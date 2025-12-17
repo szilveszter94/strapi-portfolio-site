@@ -33,7 +33,9 @@
     "backToNews": "Back To News"
   },
   "inputs": {
-    "search": "Search..."
+    "search": "Search...",
+    "oldest": "Oldest",
+    "newest": "Newest"
   },
   "errors": {
     "general": {
@@ -83,13 +85,15 @@
     "loadingPageError": "Error: We encountered an issue while loading the „News” page.",
     "loadingNewsError": "Error: We encountered an issue while loading the news.",
     "noNews": "No news available at the moment. Please check back later!",
-    "published": "Published",
-    "updated": "Updated"
+    "published": "Published: ",
+    "updated": "Updated: "
   },
   "projects": {
     "exploreAll": "Explore all projects",
     "loadingProjectsError": "Error: We encountered an issue while loading the projects.",
     "loadingPageError": "Error: We encountered an issue while loading the „Projects” page.",
-    "noProjects": "No projects available at the moment. Please check back later!"
+    "noProjects": "No projects available at the moment. Please check back later!",
+    "published": "Published at: ",
+    "duration": "Project duration: "
   }
 }
