@@ -9,7 +9,7 @@ export default async function PostList({ postList, locale, tButton }) {
           title={entry.title}
           excerpt={entry.excerpt}
           slug={entry.slug}
-          createdAt={entry.createdAt}
+          publishedDate={entry.publishedDate}
           locale={locale}
           featuredImage={entry.featuredImage}
           tButton={tButton}

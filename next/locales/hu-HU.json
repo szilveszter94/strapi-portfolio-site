@@ -33,7 +33,9 @@
     "backToNews": "Vissza A Hírekhez"
   },
   "inputs": {
-    "search": "Keresés..."
+    "search": "Keresés...",
+    "oldest": "Legrégebbi",
+    "newest": "Legújabb"
   },
   "errors": {
     "general": {
@@ -83,13 +85,15 @@
     "loadingPageError": "Hiba: Probléma történt a „Hírek” oldal betöltése közben.",
     "loadingNewsError": "Hiba: Probléma történt a hírek betöltése közben.",
     "noNews": "Jelenleg nincs hír. Kérjük, próbálkozzon később újra!",
-    "published": "Közzétéve",
-    "updated": "Frissítve"
+    "published": "Közzétéve: ",
+    "updated": "Frissítve: "
   },
   "projects": {
     "exploreAll": "Fedezze fel az összes projektet",
     "loadingProjectsError": "Hiba: Probléma történt a projektek betöltése közben.",
     "loadingPageError": "Hiba: Probléma történt a „Projektek” oldal betöltése közben.",
-    "noProjects": "Jelenleg nincs elérhető projekt. Kérjük, próbálkozzon később újra!"
+    "noProjects": "Jelenleg nincs elérhető projekt. Kérjük, próbálkozzon később újra!",
+    "published": "Közzétéve: ",
+    "duration": "Project időtartam: "
   }
 }

@@ -16,6 +16,7 @@ import "prismjs/components/prism-yaml";
 import "prismjs/components/prism-bash";
 import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-jsx";
+import { formatDate } from "@/lib/utils";
 
 // Configure Marked with the marked-highlight plugin
 // This plugin allows integration of custom syntax highlighting logic during Markdown parsing
@@ -86,6 +87,7 @@ export default async function Page(props) {
   const slug = params.slug;
   const locale = params.locale;
   const tButton = await getTranslations({ locale, namespace: "buttons" });
+  const tProjects = await getTranslations({ locale, namespace: "projects" });
 
   const [project, global] = await Promise.allSettled([fetchProjectBySlug(slug, locale), fetchLayout(locale)]);
 
@@ -101,13 +103,23 @@ export default async function Page(props) {
   if (!project.value) {
     redirect(`/${locale}/projects/`);
   }
-
+  
   // Destructure/Format the necessary properties
-  const { title, excerpt, duration, demoUrl, repoUrl, content, featuredImage, scopes, tools, designFile, author } =
-    project.value;
-  const featuredImageUrl = featuredImage
-    ? new URL(featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href
-    : null;
+  const {
+    title,
+    excerpt,
+    duration,
+    demoUrl,
+    repoUrl,
+    content,
+    featuredImage,
+    scopes,
+    tools,
+    designFile,
+    author,
+    publishedDate,
+  } = project.value;
+  const featuredImageUrl = featuredImage ? new URL(featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href : null;
   const designFileUrl = designFile ? new URL(designFile.url, process.env.NEXT_PUBLIC_STRAPI).href : null;
 
   let jsonLd = null;
@@ -149,12 +161,12 @@ export default async function Page(props) {
           },
           ...(author
             ? {
-              author: {
-                "@type": author.isOrganization ? "Organization" : "Person",
-                name: author.authorName,
-                url: author.url,
-              },
-            }
+                author: {
+                  "@type": author.isOrganization ? "Organization" : "Person",
+                  name: author.authorName,
+                  url: author.url,
+                },
+              }
             : {}),
           image: featuredImageUrl,
           keywords: [...scopes.map((scope) => scope.title), ...tools.map((tool) => tool.title)].join(", "),
@@ -190,8 +202,8 @@ export default async function Page(props) {
           ...(!isOrganization && { jobTitle: jobTitle }),
           ...(schedulingLink || socialChannels.length > 0
             ? {
-              sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
-            }
+                sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
+              }
             : {}),
           knowsAbout: extractedSkills,
           address: {
@@ -203,6 +215,8 @@ export default async function Page(props) {
       ],
     };
   }
+
+  const formattedPublishedAtDate = formatDate(publishedDate, locale);
 
   return (
     <>
@@ -216,17 +230,22 @@ export default async function Page(props) {
             <p className="text-gray-700 font-light leading-7 sm:text-xl mb-4">{excerpt}</p>
             <div className="text-sm mb-12">
               {author && <div className="text-gray-900">By {author.authorName}</div>}
-              <div>{duration}</div>
+              <div>
+                {tProjects("published")} <time dateTime={publishedDate}>{formattedPublishedAtDate}</time>
+              </div>
+              <div>{tProjects("duration")}{duration}</div>
             </div>
-            {featuredImage && <Image
-              className="mb-12 rounded-2xl overflow-hidden w-full border border-neutral-100"
-              priority
-              src={featuredImageUrl}
-              alt={featuredImage.alternativeText ?? ""}
-              width={1468}
-              height={769}
-              sizes="(max-width: 1152px) calc(100vw - 34px), 1118px"
-            />}
+            {featuredImage && (
+              <Image
+                className="mb-12 rounded-2xl overflow-hidden w-full border border-neutral-100"
+                priority
+                src={featuredImageUrl}
+                alt={featuredImage.alternativeText ?? ""}
+                width={1468}
+                height={769}
+                sizes="(max-width: 1152px) calc(100vw - 34px), 1118px"
+              />
+            )}
           </header>
           <div className="flex flex-col md:flex-row gap-x-5 justify-between">
             <section className="mt-12 md:mt-0 md:w-2/3 prose prose-gray prose-modifier">

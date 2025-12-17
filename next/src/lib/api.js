@@ -1,4 +1,4 @@
-import { CONSTANTS } from "./constants";
+import { CONSTANTS, SORT_OPTIONS } from "./constants";
 import { routing } from "./navigation";
 import {
   layoutSchema,
@@ -255,13 +255,18 @@ export const fetchNotFoundPage = async (locale) => {
 // Post-related
 //
 
-export const fetchAllPosts = async (locale, searchTerm = "", pageNumber = 1) => {
+export const fetchAllPosts = async (
+  locale,
+  searchTerm = "",
+  pageNumber = 1,
+  sort = SORT_OPTIONS.PUBLISHED_DESC.value
+) => {
   // Fetch posts sorted by the createdAt field in descending order (most recent first)
   const query = qs.stringify(
     {
       locale: locale,
       populate: "*",
-      sort: ["createdAt:desc"],
+      sort: [sort],
       ...(searchTerm && {
         filters: {
           title: {
@@ -289,12 +294,12 @@ export const fetchAllPosts = async (locale, searchTerm = "", pageNumber = 1) => 
 };
 
 export const fetchLatestPosts = async (locale) => {
-  // Fetch posts sorted by the createdAt field in descending order (most recent first)
+  // Fetch posts sorted by the publishedDate field in descending order (most recent first)
   const query = qs.stringify(
     {
       locale: locale,
       populate: "*",
-      sort: ["createdAt:desc"],
+      sort: ["publishedDate:desc"],
       pagination: {
         start: 0,
         limit: 3,
@@ -340,7 +345,7 @@ export const fetchPostBySlug = async (slug, locale) => {
     slug: post.slug,
     excerpt: post.excerpt,
     content: post.content,
-    createdAt: post.createdAt,
+    publishedDate: post.publishedDate,
     updatedAt: post.updatedAt,
     featuredImage: post.featuredImage,
     author: post.author,
@@ -370,13 +375,18 @@ export const fetchPostSitemap = async () => {
 // Project-related
 //
 
-export const fetchAllProjects = async (locale, searchTerm = "", pageNumber = 1) => {
+export const fetchAllProjects = async (
+  locale,
+  searchTerm = "",
+  pageNumber = 1,
+  sort = SORT_OPTIONS.PUBLISHED_DESC.value
+) => {
   // Fetch projects sorted by the order field in ascending order
   const query = qs.stringify(
     {
       locale: locale,
       populate: "*",
-      sort: ["order:asc"],
+      sort: [sort],
       ...(searchTerm && {
         filters: {
           title: {
@@ -460,6 +470,7 @@ export const fetchProjectBySlug = async (slug, locale) => {
     scopes: validatedData.data[0].scopes,
     tools: validatedData.data[0].tools,
     designFile: validatedData.data[0].designFile,
+    publishedDate: validatedData.data[0].publishedDate,
   };
 };
 

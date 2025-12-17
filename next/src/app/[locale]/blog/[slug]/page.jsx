@@ -108,7 +108,7 @@ export default async function Page(props) {
   }
 
   // Destructure/Format the necessary properties
-  const { title, excerpt, content, createdAt, updatedAt, featuredImage, author } = post.value;
+  const { title, excerpt, content, publishedDate, updatedAt, featuredImage, author } = post.value;
   const featuredImageUrl = featuredImage
     ? new URL(featuredImage.url, process.env.NEXT_PUBLIC_STRAPI).href
     : null;
@@ -147,7 +147,7 @@ export default async function Page(props) {
           "@id": new URL(`/blog/${slug}/#blogposting`, process.env.NEXT_PUBLIC_WEBSITE).href,
           headline: title,
           description: excerpt,
-          datePublished: createdAt,
+          datePublished: publishedDate,
           dateModified: updatedAt,
           image: featuredImageUrl,
           inLanguage: htmlLanguageTag,
@@ -228,8 +228,8 @@ export default async function Page(props) {
   }
 
   // Format dates based on locality
-  const formattedCreatedAtDate = formatDate(createdAt, localeString);
-  const formattedUpdatedAtDate = formatDate(updatedAt, localeString);
+  const formattedPublishedDate = formatDate(publishedDate, locale);
+  const formattedUpdatedAtDate = formatDate(updatedAt, locale);
 
   return (
     <>
@@ -244,9 +244,9 @@ export default async function Page(props) {
             <div className="text-sm mb-12">
               {author && <div className="text-gray-900">By {author.authorName}</div>}
               <div>
-                {tNews("published")} <time dateTime={createdAt}>{formattedCreatedAtDate}</time>
+                {tNews("published")} <time dateTime={publishedDate}>{formattedPublishedDate}</time>
                 {/* Assuming precise time-sensitive updates are not a requirement */}
-                {formattedCreatedAtDate !== formattedUpdatedAtDate && (
+                {formattedPublishedDate !== formattedUpdatedAtDate && (
                   <>
                     <span className="px-1">·</span>{tNews("updated")} <time dateTime={updatedAt}>{formattedUpdatedAtDate}</time>
                   </>
