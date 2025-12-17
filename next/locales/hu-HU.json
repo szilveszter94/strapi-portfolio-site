@@ -35,7 +35,8 @@
   "inputs": {
     "search": "Keresés...",
     "oldest": "Legrégebbi",
-    "newest": "Legújabb"
+    "newest": "Legújabb",
+    "featured": "Kiemelt"
   },
   "errors": {
     "general": {

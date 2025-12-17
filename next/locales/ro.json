@@ -35,7 +35,8 @@
   "inputs": {
     "search": "Căutare...",
     "oldest": "Cel mai vechi",
-    "newest": "Cel mai nou"
+    "newest": "Cel mai nou",
+    "featured": "Recomandate"
   },
   "errors": {
     "general": {

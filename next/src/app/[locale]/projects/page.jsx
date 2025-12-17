@@ -1,11 +1,11 @@
 import Banner from "@/components/Banner";
-import { SortButton } from "@/components/SortButton";
+import { SortDropdown } from "@/components/SortDropdown";
 import Pagination from "@/components/Pagination";
 import ProjectGrid from "@/components/ProjectGrid";
 import { SearchInput } from "@/components/SearchInput";
 import { fetchProjectsPage, fetchAllProjects, fetchLayout } from "@/lib/api";
 import { getTranslations } from "next-intl/server";
-import { SORT_OPTIONS } from "@/lib/constants";
+import { PROJECT_SORT_OPTIONS } from "@/lib/constants";
 
 export async function generateMetadata({ params }, parent) {
   const { locale } = await params;
@@ -50,7 +50,7 @@ export default async function Page({ params, searchParams }) {
   const query = await searchParams;
   const searchTerm = query.q ?? "";
   const pageNumber = Number(query.page ?? 1);
-  const sort = query.sort ?? SORT_OPTIONS.PUBLISHED_DESC.value;
+  const sort = query.sort ?? PROJECT_SORT_OPTIONS[2].value;
 
   const [page, projectsResult, global] = await Promise.allSettled([
     fetchProjectsPage(locale),
@@ -170,7 +170,7 @@ export default async function Page({ params, searchParams }) {
         <h2 className="sr-only">{tProjects("exploreAll")}</h2>
         <div className="flex justify-between mb-3">
           <SearchInput />
-          <SortButton />
+          <SortDropdown />
         </div>
         {projectsError ? (
           <div className="text-red-600 text-center">{tProjects("loadingProjectsError")}</div>

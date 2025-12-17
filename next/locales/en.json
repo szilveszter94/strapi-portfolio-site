@@ -35,7 +35,8 @@
   "inputs": {
     "search": "Search...",
     "oldest": "Oldest",
-    "newest": "Newest"
+    "newest": "Newest",
+    "featured": "Featured"
   },
   "errors": {
     "general": {
