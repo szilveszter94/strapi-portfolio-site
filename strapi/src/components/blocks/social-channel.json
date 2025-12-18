@@ -8,12 +8,15 @@
   "attributes": {
     "channel": {
       "type": "enumeration",
+      "required": true,
       "enum": [
-        "GitHub",
+        "YouTube",
+        "Instagram",
+        "TikTok",
         "LinkedIn",
-        "X"
-      ],
-      "required": true
+        "X",
+        "Facebook"
+      ]
     },
     "url": {
       "type": "string",

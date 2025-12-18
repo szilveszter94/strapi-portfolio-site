@@ -424,7 +424,7 @@ export const fetchFeaturedProjects = async (locale) => {
           $eq: true,
         },
       },
-      sort: ["order:asc"],
+      sort: ["isFeatured:desc"],
     },
     {
       encodeValuesOnly: true,

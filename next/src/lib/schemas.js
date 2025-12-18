@@ -26,8 +26,8 @@ const socialChannelSchema = z.object({
   id: z.number(),
   channel: z
     .string()
-    .refine((val) => val === "GitHub" || val == "LinkedIn" || val === "X", {
-      message: "Value must be 'GitHub', 'LinkedIn' or 'X'",
+    .refine((val) => val == "Facebook" || val == "Instagram" || val == "YouTube" || val == "TikTok" || val == "LinkedIn" || val == "X", {
+      message: "Value must be 'Facebook', 'Instagram', 'YouTube', 'TikTok', 'LinkedIn' or 'X'",
     }),
   url: z.string(),
   label: z.string(),
@@ -82,7 +82,7 @@ const projectEntrySchema = z.object({
   repoUrl: z.string().nullable(), // Allow null values
   content: z.string(),
   publishedDate: z.string().datetime(),
-  duration: z.string(),
+  duration: z.string().nullable(),
   featuredImage: imageSchema.optional().nullable(),
   isFeatured: z.boolean().nullable(),
   scopes: z.array(
