@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/16/solid";
 import { formatDate } from "@/lib/utils";
+import { StarIcon } from "@heroicons/react/24/solid";
 
 export default function ProjectEntry({
   featuredImageUrl,
@@ -13,10 +14,16 @@ export default function ProjectEntry({
   locale,
   buttonText,
   priority = false,
+  isFeatured = false
 }) {
   const formattedpublishedDateDate = formatDate(publishedDate, locale);
   return (
     <article className="bg-white hover:bg-neutral-100 transition rounded-2xl border border-neutral-200 relative h-full">
+      {isFeatured && (
+        <div className="absolute top-3 right-3 z-10">
+          <StarIcon className="h-6 w-6 text-primary-700 drop-shadow" aria-label="Featured project" />
+        </div>
+      )}
       {featuredImageUrl && (
         <Image
           draggable="false"

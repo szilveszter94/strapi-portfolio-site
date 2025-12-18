@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/24/outline";
-import { SORT_OPTIONS } from "@/lib/constants";
+import { NEWS_SORT_OPTIONS } from "@/lib/constants";
 import { useTranslations } from "next-intl";
 
 export function SortButton() {
@@ -11,11 +11,11 @@ export function SortButton() {
   const pathname = usePathname();
   const tInputs = useTranslations("inputs");
 
-  const currentSort = searchParams.get("sort") ?? SORT_OPTIONS.PUBLISHED_DESC.value;
+  const currentSort = searchParams.get("sort") ?? NEWS_SORT_OPTIONS.PUBLISHED_DESC.value;
 
-  const options = Object.values(SORT_OPTIONS);
+  const options = Object.values(NEWS_SORT_OPTIONS);
   const currentIndex = options.findIndex((opt) => opt.value === currentSort);
-  const currentOption = options[currentIndex] ?? SORT_OPTIONS.PUBLISHED_DESC;
+  const currentOption = options[currentIndex] ?? NEWS_SORT_OPTIONS.PUBLISHED_DESC;
   const nextOption = options[(currentIndex + 1) % options.length];
 
   const toggleSort = () => {

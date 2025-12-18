@@ -19,6 +19,7 @@ export default function ProjectGrid({ projects, locale, buttonText }) {
             priority={index < 4} // Prioritize the first 4 project images
             locale={locale}
             buttonText={buttonText}
+            isFeatured={entry.isFeatured}
           />
         );
       })}

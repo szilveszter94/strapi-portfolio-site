@@ -4,7 +4,7 @@ import PostList from "@/components/PostList";
 import { SearchInput } from "@/components/SearchInput";
 import { SortButton } from "@/components/SortButton";
 import { fetchBlogPage, fetchAllPosts, fetchLayout } from "@/lib/api";
-import { SORT_OPTIONS } from "@/lib/constants";
+import { NEWS_SORT_OPTIONS } from "@/lib/constants";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({ params }, parent) {
@@ -50,7 +50,7 @@ export default async function Page({ params, searchParams }) {
   const query = await searchParams;
   const searchTerm = query.q ?? "";
   const pageNumber = Number(query.page ?? 1);
-  const sort = query.sort ?? SORT_OPTIONS.PUBLISHED_DESC.value;
+  const sort = query.sort ?? NEWS_SORT_OPTIONS.PUBLISHED_DESC.value;
 
   const [page, postResult, global] = await Promise.allSettled([
     fetchBlogPage(locale),

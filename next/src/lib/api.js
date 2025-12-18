@@ -1,4 +1,4 @@
-import { CONSTANTS, SORT_OPTIONS } from "./constants";
+import { CONSTANTS, NEWS_SORT_OPTIONS, PROJECT_SORT_OPTIONS } from "./constants";
 import { routing } from "./navigation";
 import {
   layoutSchema,
@@ -259,7 +259,7 @@ export const fetchAllPosts = async (
   locale,
   searchTerm = "",
   pageNumber = 1,
-  sort = SORT_OPTIONS.PUBLISHED_DESC.value
+  sort = NEWS_SORT_OPTIONS.PUBLISHED_DESC.value
 ) => {
   // Fetch posts sorted by the createdAt field in descending order (most recent first)
   const query = qs.stringify(
@@ -379,7 +379,7 @@ export const fetchAllProjects = async (
   locale,
   searchTerm = "",
   pageNumber = 1,
-  sort = SORT_OPTIONS.PUBLISHED_DESC.value
+  sort = PROJECT_SORT_OPTIONS[2].value
 ) => {
   // Fetch projects sorted by the order field in ascending order
   const query = qs.stringify(
