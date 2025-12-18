@@ -142,7 +142,9 @@ export interface BlocksSocialChannel extends Struct.ComponentSchema {
     displayName: 'Social Channel';
   };
   attributes: {
-    channel: Schema.Attribute.Enumeration<['GitHub', 'LinkedIn', 'X']> &
+    channel: Schema.Attribute.Enumeration<
+      ['YouTube', 'Instagram', 'TikTok', 'LinkedIn', 'X', 'Facebook']
+    > &
       Schema.Attribute.Required;
     label: Schema.Attribute.String & Schema.Attribute.Required;
     url: Schema.Attribute.String & Schema.Attribute.Required;

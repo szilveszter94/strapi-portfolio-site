@@ -103,7 +103,7 @@ export default async function Page(props) {
   if (!project.value) {
     redirect(`/${locale}/projects/`);
   }
-  
+
   // Destructure/Format the necessary properties
   const {
     title,
@@ -161,12 +161,12 @@ export default async function Page(props) {
           },
           ...(author
             ? {
-                author: {
-                  "@type": author.isOrganization ? "Organization" : "Person",
-                  name: author.authorName,
-                  url: author.url,
-                },
-              }
+              author: {
+                "@type": author.isOrganization ? "Organization" : "Person",
+                name: author.authorName,
+                url: author.url,
+              },
+            }
             : {}),
           image: featuredImageUrl,
           keywords: [...scopes.map((scope) => scope.title), ...tools.map((tool) => tool.title)].join(", "),
@@ -202,8 +202,8 @@ export default async function Page(props) {
           ...(!isOrganization && { jobTitle: jobTitle }),
           ...(schedulingLink || socialChannels.length > 0
             ? {
-                sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
-              }
+              sameAs: [...(schedulingLink ? [schedulingLink] : []), ...socialChannels.map((item) => item.url)],
+            }
             : {}),
           knowsAbout: extractedSkills,
           address: {
@@ -226,15 +226,6 @@ export default async function Page(props) {
       <div className="mx-auto max-w-6xl px-4">
         <article>
           <header>
-            <h1 className="text-gray-900 font-bold text-3xl md:text-4xl tracking-tight mb-3">{title}</h1>
-            <p className="text-gray-700 font-light leading-7 sm:text-xl mb-4">{excerpt}</p>
-            <div className="text-sm mb-12">
-              {author && <div className="text-gray-900">By {author.authorName}</div>}
-              <div>
-                {tProjects("published")} <time dateTime={publishedDate}>{formattedPublishedAtDate}</time>
-              </div>
-              <div>{tProjects("duration")}{duration}</div>
-            </div>
             {featuredImage && (
               <Image
                 className="mb-12 rounded-2xl overflow-hidden w-full border border-neutral-100"
@@ -246,6 +237,16 @@ export default async function Page(props) {
                 sizes="(max-width: 1152px) calc(100vw - 34px), 1118px"
               />
             )}
+            <h1 className="text-gray-900 font-bold text-3xl md:text-4xl tracking-tight mb-3">{title}</h1>
+            <div className="text-sm mb-12">
+              {author && <div className="text-gray-900">By {author.authorName}</div>}
+              <div>
+                {tProjects("published")} <time dateTime={publishedDate}>{formattedPublishedAtDate}</time>
+              </div>
+              {duration &&
+                (<div>{tProjects("duration")}{duration}</div>)
+              }
+            </div>
           </header>
           <div className="flex flex-col md:flex-row gap-x-5 justify-between">
             <section className="mt-12 md:mt-0 md:w-2/3 prose prose-gray prose-modifier">

@@ -917,7 +917,6 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
         };
       }>;
     duration: Schema.Attribute.String &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -949,20 +948,6 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::project.project'
     >;
-    order: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 1;
-        },
-        number
-      >;
     publishedAt: Schema.Attribute.DateTime;
     publishedDate: Schema.Attribute.DateTime &
       Schema.Attribute.Required &
