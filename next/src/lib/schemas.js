@@ -84,6 +84,7 @@ const projectEntrySchema = z.object({
   publishedDate: z.string().datetime(),
   duration: z.string(),
   featuredImage: imageSchema.optional().nullable(),
+  isFeatured: z.boolean().nullable(),
   scopes: z.array(
     z.object({
       id: z.number(),
