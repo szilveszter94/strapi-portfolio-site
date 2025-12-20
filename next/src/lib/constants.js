@@ -36,35 +36,6 @@ export const PROJECT_SORT_OPTIONS = [
   },
 ];
 
-export const defaultPalette = {
-  white: "#ffffff",
-  black: "#000000",
-  ring: "#5b970f",
-  codeBg: "#e5e7eb",
-  link: "#0d5b97",
-  gray50: "#f9fafb",
-  gray200: "#e5e7eb",
-  gray500: "#6b7280",
-  gray700: "#374151",
-  gray900: "#111827",
-  neutral50: "#fafafa",
-  neutral100: "#f5f5f5",
-  neutral200: "#e5e5e5",
-  neutral300: "#d4d4d4",
-  neutral400: "#a3a3a3",
-  neutral700: "#404040",
-  neutral900: "#171717",
-  neutral950: "#0a0a0a",
-  primary50: "#f1f8fe",
-  primary100: "#e2f0fc",
-  primary700: "#0d5b97",
-  primary900: "#124168",
-  secondary: "#5b970f",
-  green500: "#22c55e",
-  red500: "#ef4444",
-  red600: "#dc2626",
-};
-
 export const themeVariableMap = {
   black: "--black",
   white: "--white",

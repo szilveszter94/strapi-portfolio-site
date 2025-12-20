@@ -8,8 +8,7 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/lib/navigation";
 import { ServerProviders } from "@/components/providers/ServerProvider";
 import { getTranslations } from "next-intl/server";
-import { hexToRgb } from "@/lib/utils";
-import { defaultPalette, themeVariableMap } from "@/lib/constants";
+import { getCssVarsFromPaletteResult } from "@/lib/utils";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -109,31 +108,17 @@ export default async function RootLayout({ children, params }) {
   } catch (err) {
     console.error("Failed to fetch theme palette:", err);
   }
-
-  const safeBackendPalette = {};
-  if (paletteResult?.data) {
-    Object.entries(paletteResult.data).forEach(([key, value]) => {
-      if (value != null) safeBackendPalette[key] = value;
-    });
-  }
-  const palette = { ...defaultPalette, ...safeBackendPalette };
-
-  const cssVars = Object.entries(palette)
-    .map(([key, value]) => {
-      const cssVar = themeVariableMap[key];
-      let rgb = "0 0 0";
-      try {
-        rgb = hexToRgb(value);
-      } catch (e) {
-        console.warn(`Invalid hex for ${key}: ${value}`);
-      }
-      return `${cssVar}: ${rgb};`;
-    })
-    .join("");
+  const cssVars = getCssVarsFromPaletteResult(paletteResult);
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head>{cssVars && <style dangerouslySetInnerHTML={{ __html: `:root{${cssVars}}` }} />}</head>
+      <head>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: cssVars ? `:root{${cssVars}}` : "",
+          }}
+        />
+      </head>
       <body className="antialiased text-gray-500 text-base">
         <ServerProviders locale={locale}>
           <Announcement data={announcement} />

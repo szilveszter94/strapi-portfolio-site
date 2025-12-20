@@ -490,7 +490,7 @@ export const fetchThemePalette = async () => {
   const validatedData = await validateResponse(response, themePaletteSchema, endpoint);
   
   // Return null if the data is undefined or the array is empty (no project found for the given slug)
-  if (!validatedData.data || validatedData.data.length === 0 || !validatedData.data.applyTheme) return null;
+  if (!validatedData.data || validatedData.data.length === 0) return null;
 
   return validatedData;
 };

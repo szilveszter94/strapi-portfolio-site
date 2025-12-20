@@ -1,5 +1,6 @@
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { themeVariableMap } from "./constants";
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -37,7 +38,28 @@ export const generatePagination = (currentPage, totalPages) => {
   return [1, "...", currentPage - 1, currentPage, currentPage + 1, "...", totalPages];
 };
 
-export const hexToRgb = (hex) => {
+export const getCssVarsFromPaletteResult = (paletteResult) => {
+  const applyTheme = paletteResult?.data?.applyTheme === true;
+
+  return applyTheme && paletteResult?.data
+    ? Object.entries(paletteResult.data)
+        .filter(([key, value]) => key !== "applyTheme" && value != null)
+        .map(([key, value]) => {
+          const cssVar = themeVariableMap[key];
+          if (!cssVar) return "";
+
+          try {
+            return `${cssVar}: ${hexToRgb(value)};`;
+          } catch {
+            console.warn(`Invalid hex for ${key}: ${value}`);
+            return "";
+          }
+        })
+        .join("")
+    : null;
+};
+
+const hexToRgb = (hex) => {
   let clean = hex.replace("#", "");
 
   if (clean.length === 3) {
