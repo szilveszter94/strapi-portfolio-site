@@ -120,6 +120,7 @@ const projectEntrySchema = z.object({
 
 export const themePaletteSchema = z.object({
   data: z.object({
+    applyTheme: z.boolean(),
     white: hexColor,
     black: hexColor,
     ring: hexColor,

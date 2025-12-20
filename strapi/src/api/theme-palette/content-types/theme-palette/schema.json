@@ -110,6 +110,10 @@
     "red600": {
       "type": "string",
       "default": "#dc2626"
+    },
+    "applyTheme": {
+      "type": "boolean",
+      "required": true
     }
   }
 }

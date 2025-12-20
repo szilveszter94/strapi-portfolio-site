@@ -1063,6 +1063,7 @@ export interface ApiThemePaletteThemePalette extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    applyTheme: Schema.Attribute.Boolean & Schema.Attribute.Required;
     black: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#000000'>;
     codeBg: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#e5e7eb'>;
     createdAt: Schema.Attribute.DateTime;
