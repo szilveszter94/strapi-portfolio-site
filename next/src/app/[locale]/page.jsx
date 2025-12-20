@@ -56,8 +56,7 @@ export default async function Page({ params }) {
   }
 
   // Destructure/Format the necessary properties
-  const { metadata, about, featuredProjects } =
-    page.value;
+  const { metadata, about, featuredProjects } = page.value;
   const { title, description } = metadata;
 
   let knowsAbout = null;

@@ -6,9 +6,9 @@ export function cn(...inputs) {
 }
 
 // Utility function for formatting dates
-export const formatDate = (date, localeString = 'en-US') => {
+export const formatDate = (date, localeString = "en-US") => {
   return new Intl.DateTimeFormat(localeString, {
-    dateStyle: 'short',
+    dateStyle: "short",
   }).format(new Date(date));
 };
 
@@ -35,4 +35,21 @@ export const generatePagination = (currentPage, totalPages) => {
   // show the first page, an ellipsis, the current page and its neighbors,
   // another ellipsis, and the last page.
   return [1, "...", currentPage - 1, currentPage, currentPage + 1, "...", totalPages];
+};
+
+export const hexToRgb = (hex) => {
+  let clean = hex.replace("#", "");
+
+  if (clean.length === 3) {
+    clean = clean
+      .split("")
+      .map((c) => c + c)
+      .join("");
+  }
+
+  const r = parseInt(clean.slice(0, 2), 16);
+  const g = parseInt(clean.slice(2, 4), 16);
+  const b = parseInt(clean.slice(4, 6), 16);
+
+  return `${r} ${g} ${b}`;
 };

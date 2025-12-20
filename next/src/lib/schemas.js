@@ -4,6 +4,10 @@ import { z } from "zod";
 // Patterns
 //
 
+const hexColor = z.string().regex(/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/, {
+  message: "Invalid hex color, must be #RRGGBB or #RGB",
+}).optional().nullable();
+
 const imageSchema = z.object({
   alternativeText: z.string().nullable(), // Allow null values
   width: z.number().nullable(), // Allow null values
@@ -26,9 +30,18 @@ const socialChannelSchema = z.object({
   id: z.number(),
   channel: z
     .string()
-    .refine((val) => val == "Facebook" || val == "Instagram" || val == "YouTube" || val == "TikTok" || val == "LinkedIn" || val == "X", {
-      message: "Value must be 'Facebook', 'Instagram', 'YouTube', 'TikTok', 'LinkedIn' or 'X'",
-    }),
+    .refine(
+      (val) =>
+        val == "Facebook" ||
+        val == "Instagram" ||
+        val == "YouTube" ||
+        val == "TikTok" ||
+        val == "LinkedIn" ||
+        val == "X",
+      {
+        message: "Value must be 'Facebook', 'Instagram', 'YouTube', 'TikTok', 'LinkedIn' or 'X'",
+      }
+    ),
   url: z.string(),
   label: z.string(),
 });
@@ -103,6 +116,36 @@ const projectEntrySchema = z.object({
     })
     .nullable(), // Allow null values
   author: authorEntrySchema,
+});
+
+export const themePaletteSchema = z.object({
+  data: z.object({
+    white: hexColor,
+    black: hexColor,
+    ring: hexColor,
+    codeBg: hexColor,
+    gray50: hexColor,
+    gray200: hexColor,
+    gray500: hexColor,
+    gray700: hexColor,
+    gray900: hexColor,
+    neutral50: hexColor,
+    neutral100: hexColor,
+    neutral200: hexColor,
+    neutral300: hexColor,
+    neutral400: hexColor,
+    neutral700: hexColor,
+    neutral900: hexColor,
+    neutral950: hexColor,
+    primary50: hexColor,
+    primary100: hexColor,
+    primary700: hexColor,
+    primary900: hexColor,
+    secondary: hexColor,
+    red500: hexColor,
+    red600: hexColor,
+    green500: hexColor,
+  }),
 });
 
 //

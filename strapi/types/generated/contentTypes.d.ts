@@ -1052,6 +1052,59 @@ export interface ApiScopeScope extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiThemePaletteThemePalette extends Struct.SingleTypeSchema {
+  collectionName: 'theme_palettes';
+  info: {
+    displayName: 'ThemePalette';
+    pluralName: 'theme-palettes';
+    singularName: 'theme-palette';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    black: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#000000'>;
+    codeBg: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#e5e7eb'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    gray200: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#e5e7eb'>;
+    gray50: Schema.Attribute.String & Schema.Attribute.DefaultTo<' #f9fafb'>;
+    gray500: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#6b7280'>;
+    gray700: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#374151'>;
+    gray900: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#111827'>;
+    green500: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#22c55e'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::theme-palette.theme-palette'
+    > &
+      Schema.Attribute.Private;
+    neutral100: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#f5f5f5'>;
+    neutral200: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#e5e5e5'>;
+    neutral300: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<' #d4d4d4'>;
+    neutral400: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#a3a3a3'>;
+    neutral50: Schema.Attribute.String & Schema.Attribute.DefaultTo<' #fafafa'>;
+    neutral700: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#404040'>;
+    neutral900: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#171717'>;
+    neutral950: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#0a0a0a'>;
+    primary100: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#e2f0fc'>;
+    primary50: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#f1f8fe'>;
+    primary700: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#0d5b97'>;
+    primary900: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#124168'>;
+    publishedAt: Schema.Attribute.DateTime;
+    red500: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#ef4444'>;
+    red600: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#dc2626'>;
+    ring: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#5b970f'>;
+    secondary: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#5b970f'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    white: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#ffffff'>;
+  };
+}
+
 export interface ApiToolTool extends Struct.CollectionTypeSchema {
   collectionName: 'tools';
   info: {
@@ -1601,6 +1654,7 @@ declare module '@strapi/strapi' {
       'api::project.project': ApiProjectProject;
       'api::projects-page.projects-page': ApiProjectsPageProjectsPage;
       'api::scope.scope': ApiScopeScope;
+      'api::theme-palette.theme-palette': ApiThemePaletteThemePalette;
       'api::tool.tool': ApiToolTool;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
