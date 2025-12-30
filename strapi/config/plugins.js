@@ -11,8 +11,8 @@ module.exports = ({ env }) => ({
         },
       },
       settings: {
-        defaultFrom: "no-reply@sszilveszter.com",
-        defaultReplyTo: "no-reply@sszilveszter.com",
+        defaultFrom: "no-reply@sbalazs.com",
+        defaultReplyTo: "no-reply@sbalazs.com",
       },
     },
   },
