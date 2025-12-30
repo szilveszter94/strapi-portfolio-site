@@ -59,6 +59,28 @@ export const getCssVarsFromPaletteResult = (paletteResult) => {
     : null;
 };
 
+export const normalizeUrl = (url) => {
+  if (!url) return "#";
+
+  let normalized = url.trim();
+
+  if (!/^https?:\/\//i.test(normalized)) {
+    normalized = `https://${normalized}`;
+  }
+
+  try {
+    const parsed = new URL(normalized);
+
+    if (!["http:", "https:"].includes(parsed.protocol)) {
+      return "#";
+    }
+
+    return parsed.toString();
+  } catch {
+    return "#";
+  }
+};
+
 const hexToRgb = (hex) => {
   let clean = hex.replace("#", "");
 

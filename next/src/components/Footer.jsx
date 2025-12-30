@@ -8,6 +8,7 @@ import ContactLink from "./ContactLink";
 import Image from "next/image";
 import ScrollToTopButton from "./ScrollToTopButton";
 import { FaFacebookF, FaXTwitter, FaLinkedinIn, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa6";
+import { normalizeUrl } from "@/lib/utils";
 
 const IconBox = ({ children }) => (
   <div className="flex size-10 items-center justify-center rounded-lg bg-neutral-900 text-white hover:bg-neutral-700 transition">
@@ -115,7 +116,7 @@ export default async function Footer({ data, siteRepresentation, locale, tLayout
                       {socialChannels.map((item) => (
                         <li key={item.id}>
                           <Link
-                            href={item.url}
+                            href={normalizeUrl(item.url)}
                             rel="noopener noreferrer"
                             target="_blank"
                             className="text-white/75 transition hover:text-white block">
