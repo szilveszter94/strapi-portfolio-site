@@ -13,6 +13,7 @@ import {
   allSlugsSchema,
   dynamicPageMetadataSchema,
   aboutPageSchema,
+  themePaletteSchema,
 } from "./schemas";
 
 const qs = require("qs");
@@ -472,6 +473,26 @@ export const fetchProjectBySlug = async (slug, locale) => {
     designFile: validatedData.data[0].designFile,
     publishedDate: validatedData.data[0].publishedDate,
   };
+};
+
+export const fetchThemePalette = async () => {
+  const query = qs.stringify(
+    {
+      populate: "*",
+    },
+    {
+      encodeValuesOnly: true,
+    }
+  );
+  const endpoint = `/api/theme-palette?${query}`;
+  const response = await fetchData(endpoint);
+  
+  const validatedData = await validateResponse(response, themePaletteSchema, endpoint);
+  
+  // Return null if the data is undefined or the array is empty (no project found for the given slug)
+  if (!validatedData.data || validatedData.data.length === 0) return null;
+
+  return validatedData;
 };
 
 export const fetchProjectSitemap = async () => {

@@ -1,0 +1,119 @@
+{
+  "kind": "singleType",
+  "collectionName": "theme_palettes",
+  "info": {
+    "singularName": "theme-palette",
+    "pluralName": "theme-palettes",
+    "displayName": "ThemePalette"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "white": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "black": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "ring": {
+      "type": "string",
+      "default": "#5b970f"
+    },
+    "codeBg": {
+      "type": "string",
+      "default": "#e5e7eb"
+    },
+    "gray50": {
+      "type": "string",
+      "default": " #f9fafb"
+    },
+    "gray200": {
+      "type": "string",
+      "default": "#e5e7eb"
+    },
+    "gray500": {
+      "type": "string",
+      "default": "#6b7280"
+    },
+    "gray700": {
+      "type": "string",
+      "default": "#374151"
+    },
+    "gray900": {
+      "type": "string",
+      "default": "#111827"
+    },
+    "neutral50": {
+      "type": "string",
+      "default": " #fafafa"
+    },
+    "neutral100": {
+      "type": "string",
+      "default": "#f5f5f5"
+    },
+    "neutral200": {
+      "type": "string",
+      "default": "#e5e5e5"
+    },
+    "neutral300": {
+      "type": "string",
+      "default": " #d4d4d4"
+    },
+    "neutral400": {
+      "type": "string",
+      "default": "#a3a3a3"
+    },
+    "neutral700": {
+      "type": "string",
+      "default": "#404040"
+    },
+    "neutral900": {
+      "type": "string",
+      "default": "#171717"
+    },
+    "neutral950": {
+      "type": "string",
+      "default": "#0a0a0a"
+    },
+    "primary50": {
+      "type": "string",
+      "default": "#f1f8fe"
+    },
+    "primary100": {
+      "type": "string",
+      "default": "#e2f0fc"
+    },
+    "primary700": {
+      "type": "string",
+      "default": "#0d5b97"
+    },
+    "primary900": {
+      "type": "string",
+      "default": "#124168"
+    },
+    "secondary": {
+      "type": "string",
+      "default": "#5b970f"
+    },
+    "green500": {
+      "type": "string",
+      "default": "#22c55e"
+    },
+    "red500": {
+      "type": "string",
+      "default": "#ef4444"
+    },
+    "red600": {
+      "type": "string",
+      "default": "#dc2626"
+    },
+    "applyTheme": {
+      "type": "boolean",
+      "required": true
+    }
+  }
+}

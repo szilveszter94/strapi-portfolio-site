@@ -2,12 +2,13 @@ import "./globals.css";
 import Announcement from "@/components/Announcement";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { fetchLayout } from "@/lib/api";
+import { fetchLayout, fetchThemePalette } from "@/lib/api";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/lib/navigation";
 import { ServerProviders } from "@/components/providers/ServerProvider";
 import { getTranslations } from "next-intl/server";
+import { getCssVarsFromPaletteResult } from "@/lib/utils";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -101,12 +102,27 @@ export default async function RootLayout({ children, params }) {
 
   const { announcement, footer, siteRepresentation } = data;
 
+  let paletteResult = null;
+  try {
+    paletteResult = await fetchThemePalette();
+  } catch (err) {
+    console.error("Failed to fetch theme palette:", err);
+  }
+  const cssVars = getCssVarsFromPaletteResult(paletteResult);
+
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: cssVars ? `:root{${cssVars}}` : "",
+          }}
+        />
+      </head>
       <body className="antialiased text-gray-500 text-base">
         <ServerProviders locale={locale}>
           <Announcement data={announcement} />
-          <Header siteRepresentation={siteRepresentation} locale={locale}/>
+          <Header siteRepresentation={siteRepresentation} locale={locale} />
           <main className="relative">{children}</main>
           <Footer data={footer} siteRepresentation={siteRepresentation} locale={locale} tLayout={tLayout} />
         </ServerProviders>
